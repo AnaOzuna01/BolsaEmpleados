@@ -1,0 +1,17 @@
+extends ../../layout.jade
+block contenido
+    div(class="container")
+        for job in jobs
+            .white.border.tr.large-padding
+                .row
+                    .col-md-10
+                        h3= job.category
+                        h4= job.type
+                        h4= job.company
+                        //h3 = job.logo
+                        h4= job.position
+                        h4= job.location
+                        h4= job.description
+                    .col-md-2
+                        a(href="/app/imagenes/#{job._id}/edit", class="right-space") Edit
+                        a(href="/app/imagenes/#{job._id}/delete") Delete
