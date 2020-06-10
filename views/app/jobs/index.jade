@@ -14,4 +14,5 @@ block contenido
                         h4= job.description
                     .col-md-2
                         a(href="/app/jobs/#{job._id}/edit", class="right-space") Edit
-                        a(href="/app/jobs/#{job._id}/delete") Delete
+                        form(action="/app/jobs/#{job._id}?_method=DELETE", class="link", method="POST")
+                            input(type="submit", value="Delete")

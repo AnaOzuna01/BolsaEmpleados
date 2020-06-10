@@ -49,7 +49,14 @@ router.route("/jobs/:id/")
 })
 
 .delete(function(req, res) {
-
+    Job.findByIdAndRemove({ _id: req.params.id }, function(err) {
+        if (!err) {
+            res.redirect("/app/jobs");
+        } else {
+            console.log(err);
+            res.redirect("/app/jobs" + req.params.id);
+        }
+    })
 });
 
 router.route("/jobs")
