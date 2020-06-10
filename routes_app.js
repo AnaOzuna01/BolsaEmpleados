@@ -14,7 +14,9 @@ router.get("/jobs/new", function(req, res) {
 });
 
 router.get("/jobs/:id/edit", function(req, res) {
-
+    Job.findById(req.params.id, function(err, job) {
+        res.render("app/jobs/edit", { job: job });
+    })
 });
 
 router.route("/jobs/:id/")
@@ -25,7 +27,25 @@ router.route("/jobs/:id/")
     })
 
 .put(function(req, res) {
+    Job.findById(req.params.id, function(err, job) {
+        job.category = req.body.category;
+        job.type = req.body.type;
+        job.company = req.body.company;
+        //logo
+        job.url = req.body.url;
+        job.position = req.body.position;
+        job.location = req.body.location;
+        job.description = req.body.description;
 
+        job.save(function(err) {
+            if (!err) {
+                res.render("app/jobs/show", { job: job });
+            } else {
+                res.render("app/jobs/" + job.id + "/edit", { job: job });
+            }
+        })
+
+    })
 })
 
 .delete(function(req, res) {
