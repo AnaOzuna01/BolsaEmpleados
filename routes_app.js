@@ -1,6 +1,7 @@
 var express = require("express");
 var Job = require("./models/jobs");
 var router = express.Router();
+var job_find_middleware = require("./middlewares/find_job");
 
 router.get("/", function(req, res) {
 
@@ -13,43 +14,38 @@ router.get("/jobs/new", function(req, res) {
     res.render("app/jobs/new");
 });
 
+router.all("/jobs/:id*", job_find_middleware);
+
 router.get("/jobs/:id/edit", function(req, res) {
-    Job.findById(req.params.id, function(err, job) {
-        res.render("app/jobs/edit", { job: job });
-    })
+    res.render("app/jobs/edit");
 });
 
 router.route("/jobs/:id/")
     .get(function(req, res) {
-        Job.findById(req.params.id, function(err, job) {
-            res.render("app/jobs/show", { job: job });
-        })
+        res.render("app/jobs/show");
     })
 
 .put(function(req, res) {
-    Job.findById(req.params.id, function(err, job) {
-        job.category = req.body.category;
-        job.type = req.body.type;
-        job.company = req.body.company;
-        //logo
-        job.url = req.body.url;
-        job.position = req.body.position;
-        job.location = req.body.location;
-        job.description = req.body.description;
+    res.locals.job.category = req.body.category;
+    res.locals.job.type = req.body.type;
+    res.locals.job.company = req.body.company;
+    //logo
+    res.locals.job.url = req.body.url;
+    res.locals.job.position = req.body.position;
+    res.locals.job.location = req.body.location;
+    res.locals.job.description = req.body.description;
 
-        job.save(function(err) {
-            if (!err) {
-                res.render("app/jobs/show", { job: job });
-            } else {
-                res.render("app/jobs/" + job.id + "/edit", { job: job });
-            }
-        })
-
+    res.locals.job.save(function(err) {
+        if (!err) {
+            res.render("app/jobs/show");
+        } else {
+            res.render("app/jobs/" + req.params.id + "/edit");
+        }
     })
 })
 
 .delete(function(req, res) {
-    Job.findByIdAndRemove({ _id: req.params.id }, function(err) {
+    Job.findOneAndRemove({ _id: req.params.id }, function(err) {
         if (!err) {
             res.redirect("/app/jobs");
         } else {
