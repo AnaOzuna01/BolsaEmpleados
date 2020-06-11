@@ -7,4 +7,5 @@ block contenido
         h3= job.position
         h3= job.location
         h3= job.description
-    p Post by #{job.creator.email}
+    if (typeof job.creator != "undefined")
+        p Post by #{job.creator.email}
