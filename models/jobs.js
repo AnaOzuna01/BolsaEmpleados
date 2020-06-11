@@ -5,7 +5,7 @@ var job_schema = new Schema({
     category: { type: String, required: true },
     type: { type: String, required: true },
     company: { type: String, required: true },
-    //logo
+    extension: { type: String, required: false },
     position: { type: String, required: true },
     location: { type: String, required: true },
     description: { type: String, required: true },

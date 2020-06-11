@@ -4,8 +4,10 @@ var User = require("./models/user").User;
 var cookieSession = require("cookie-session");
 var router_app = require("./routes_app");
 var session_middlewares = require("./middlewares/session");
-var methodOverride = require("method-override");
+var form = require("express-form-data");
 
+
+var methodOverride = require("method-override");
 
 var app = express();
 
@@ -13,12 +15,15 @@ app.use("/public", express.static('public'));
 app.use(bodyParser.json()); //Para peticiones application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use(methodOverride("_method"))
 
 app.use(cookieSession({
     name: "session",
     keys: ["llave-1", "llave-2"]
 }));
+
+app.use(form.parse({ keepExtensions: true }));
 
 app.set("view engine", "jade");
 

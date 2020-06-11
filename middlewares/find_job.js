@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
         .populate("creator")
         .exec(function(err, job) {
             if (job != null && owner_check(job, req, res)) {
-                console.log("Job founded. Creator ID:  " + job.creator);
+                console.log(job.creator);
                 res.locals.job = job;
                 next();
             } else {

@@ -8,7 +8,7 @@ block contenido
                         h3= job.category
                         h4= job.type
                         h4= job.company
-                        //h3 = job.logo
+                        img(src="/public/jobs_images/#{job._id}.#{job.extension}")
                         h4= job.position
                         h4= job.location
                         h4= job.description

@@ -1,10 +1,25 @@
 var express = require("express");
 var Job = require("./models/jobs");
 var router = express.Router();
+var fs = require("fs");
+var path = require('path');
+//var multer = require("multer");
 var job_find_middleware = require("./middlewares/find_job");
+/*
+var storage = multer.diskStorage({
+    destination: path.join(__dirname, "public/jobs_images"),
+    filename: (req, file, callback) => {
+        callback(null, file.originalname);
+    }
+});
+
+router.use(multer({
+    storage: storage,
+    dest: path.join(__dirname, "public/jobs_images")
+}).single("logo"));
+*/
 
 router.get("/", function(req, res) {
-
     res.render("app/home");
 });
 
@@ -30,6 +45,7 @@ router.route("/jobs/:id/")
     res.locals.job.type = req.body.type;
     res.locals.job.company = req.body.company;
     //logo
+
     res.locals.job.url = req.body.url;
     res.locals.job.position = req.body.position;
     res.locals.job.location = req.body.location;
@@ -64,12 +80,13 @@ router.route("/jobs")
     })
 
 .post(function(req, res) {
-    console.log(res.locals.user);
+    console.log(req.files.logo);
+    var extension = req.files.logo.name.split(".").pop();
     var data = {
         category: req.body.category,
         type: req.body.type,
         company: req.body.company,
-        //logo
+        extension: extension,
         position: req.body.position,
         location: req.body.location,
         description: req.body.description,
@@ -80,9 +97,12 @@ router.route("/jobs")
 
     job.save(function(err) {
         if (!err) {
-            res.redirect("/app/jobs/" + job._id)
+            fs.rename(req.files.logo.path, "public/jobs_images/" + job._id + "." + extension, function(err) {
+                res.redirect("/app/jobs/" + job._id);
+            });
+
         } else {
-            console.log("Job post in category: " + job);
+            console.log(job);
             res.render(err);
         }
 
