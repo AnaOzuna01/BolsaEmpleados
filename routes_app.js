@@ -57,13 +57,14 @@ router.route("/jobs/:id/")
 
 router.route("/jobs")
     .get(function(req, res) {
-        Job.find({}, function(err, jobs) {
+        Job.find({ creator: res.locals.user._id }, function(err, jobs) {
             if (err) { res.redirect("/app"); return; }
             res.render("app/jobs/index", { jobs: jobs });
         });
     })
 
 .post(function(req, res) {
+    console.log(res.locals.user);
     var data = {
         category: req.body.category,
         type: req.body.type,
@@ -71,7 +72,8 @@ router.route("/jobs")
         //logo
         position: req.body.position,
         location: req.body.location,
-        description: req.body.description
+        description: req.body.description,
+        creator: res.locals.user._id
     }
 
     var job = new Job(data);
@@ -80,6 +82,7 @@ router.route("/jobs")
         if (!err) {
             res.redirect("/app/jobs/" + job._id)
         } else {
+            console.log("Job post in category: " + job);
             res.render(err);
         }
 

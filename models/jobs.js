@@ -8,7 +8,8 @@ var job_schema = new Schema({
     //logo
     position: { type: String, required: true },
     location: { type: String, required: true },
-    description: { type: String, required: true }
+    description: { type: String, required: true },
+    creator: { type: Schema.Types.ObjectId, ref: "User" }
 });
 
 
