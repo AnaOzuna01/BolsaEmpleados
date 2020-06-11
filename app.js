@@ -1,11 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;
-var cookieSession = require("cookie-session");
+var session = require("express-session");
 var router_app = require("./routes_app");
 var session_middlewares = require("./middlewares/session");
 var form = require("express-form-data");
-
+var redis = require("redis");
+var redisClient = redis.createClient();
+var RedisStore = require("connect-redis")(session);
 
 var methodOverride = require("method-override");
 
@@ -18,10 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"))
 
-app.use(cookieSession({
-    name: "session",
-    keys: ["llave-1", "llave-2"]
-}));
+var sessionMiddlewares = session({
+    store: new RedisStore({ client: redisClient }),
+    secret: "super ultra secret word"
+});
+app.use(sessionMiddlewares);
 
 app.use(form.parse({ keepExtensions: true }));
 

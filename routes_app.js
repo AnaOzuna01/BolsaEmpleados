@@ -5,6 +5,7 @@ var fs = require("fs");
 var path = require('path');
 //var multer = require("multer");
 var job_find_middleware = require("./middlewares/find_job");
+const { Console } = require("console");
 /*
 var storage = multer.diskStorage({
     destination: path.join(__dirname, "public/jobs_images"),
@@ -21,10 +22,10 @@ router.use(multer({
 
 router.get("/", function(req, res) {
     Job.find({})
-        .populate("creator")
-        .exec(function(err, extension) {
+        //.populate("creator")
+        .exec(function(err, jobs) {
             if (err) console.log(err);
-            res.render("app/home", { extension: extension });
+            res.render("app/home", { jobs: jobs });
         })
 });
 
@@ -81,6 +82,7 @@ router.route("/jobs")
         Job.find({ creator: res.locals.user._id }, function(err, jobs) {
             if (err) { res.redirect("/app"); return; }
             res.render("app/jobs/index", { jobs: jobs });
+
         });
     })
 
