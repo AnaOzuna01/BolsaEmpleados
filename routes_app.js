@@ -20,7 +20,12 @@ router.use(multer({
 */
 
 router.get("/", function(req, res) {
-    res.render("app/home");
+    Job.find({})
+        .populate("creator")
+        .exec(function(err, extension) {
+            if (err) console.log(err);
+            res.render("app/home", { extension: extension });
+        })
 });
 
 /*REST*/
