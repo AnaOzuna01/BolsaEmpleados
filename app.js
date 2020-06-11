@@ -20,11 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"))
 
-var sessionMiddlewares = session({
+var sessionMiddleware = session({
     store: new RedisStore({ client: redisClient }),
     secret: "super ultra secret word"
 });
-app.use(sessionMiddlewares);
+app.use(sessionMiddleware);
 
 app.use(form.parse({ keepExtensions: true }));
 

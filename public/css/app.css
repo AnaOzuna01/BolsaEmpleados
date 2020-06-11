@@ -91,3 +91,12 @@ img {
     max-width: 100%;
     width: 300px;
 }
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: lightgrey;
+    color: black;
+    text-align: center;
+}

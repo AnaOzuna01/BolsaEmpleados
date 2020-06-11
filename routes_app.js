@@ -22,7 +22,7 @@ router.use(multer({
 
 router.get("/", function(req, res) {
     Job.find({})
-        //.populate("creator")
+        .populate("creator")
         .exec(function(err, jobs) {
             if (err) console.log(err);
             res.render("app/home", { jobs: jobs });
@@ -50,8 +50,6 @@ router.route("/jobs/:id/")
     res.locals.job.category = req.body.category;
     res.locals.job.type = req.body.type;
     res.locals.job.company = req.body.company;
-    //logo
-
     res.locals.job.url = req.body.url;
     res.locals.job.position = req.body.position;
     res.locals.job.location = req.body.location;
@@ -60,6 +58,7 @@ router.route("/jobs/:id/")
     res.locals.job.save(function(err) {
         if (!err) {
             res.render("app/jobs/show");
+
         } else {
             res.render("app/jobs/" + req.params.id + "/edit");
         }
@@ -101,7 +100,6 @@ router.route("/jobs")
     }
 
     var job = new Job(data);
-
     job.save(function(err) {
         if (!err) {
             fs.rename(req.files.logo.path, "public/jobs_images/" + job._id + "." + extension, function(err) {
