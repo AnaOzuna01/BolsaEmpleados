@@ -35,6 +35,18 @@ router.get("/jobs/new", function(req, res) {
     res.render("app/jobs/new");
 });
 
+router.get("/user_jobs/user_home", function(req, res) {
+    res.render("app/user_jobs/user_home");
+});
+
+router.get("/user_jobs/user_post", function(req, res) {
+    res.render("app/user_jobs/user_post");
+});
+
+router.get("/user_jobs/user_info", function(req, res) {
+    res.render("app/user_jobs/user_info");
+});
+
 router.all("/jobs/:id*", job_find_middleware);
 
 router.get("/jobs/:id/edit", function(req, res) {

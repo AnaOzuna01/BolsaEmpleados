@@ -5,11 +5,22 @@ block contenido
         form(action="/app/jobs/#{job.id}?_method=PUT" method="POST")
             div(class="form-group")
                 label(for="category") Category
-                input(type="text" name="category", placeholder="Category", id="category", class="form-control", value="#{job.category}")
-            
+                select(name="category" id="category", class="form-control", value="#{job.category}")
+                    option(value="Design") Design
+                    option(value="Programming") Programming
+                
             div(class="form-group")
                 label(for="type") Type
-                input(type="text" name="type", placeholder="Type", id="type", class="form-control", value="#{job.type}")
+                br
+
+                input(type="radio", name="type", value="#{job.type}")
+                label(for="FullTime", class="radio-inline margin-right") Full Time
+
+                input(type="radio", name="type", value="#{job.type}")
+                label(for="PartTime", class="radio-inline margin-right") Part Time
+
+                input(type="radio", name="type", value="#{job.type}")
+                label(for="Freelance", class="radio-inline margin-right") Freelance
 
             div(class="form-group")
                 label(for="company") Company
@@ -33,7 +44,7 @@ block contenido
 
             div(class="form-group")
                 label(for="description") Description
-                input(type="textarea" name="description", placeholder="Description", id="description", class="form-control", value="#{job.description}")
+                textarea(name="description", rows="10", placeholder="Description", id="description", class="form-control", value="#{job.description}")
 
             div(class="row top-space")
                 div(class="col-xs-12 col-sm-6")
