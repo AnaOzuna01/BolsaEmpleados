@@ -1,3 +1,21 @@
 extends ../../layout.jade
 block contenido
     h1 Welcome to User POST
+
+    .row
+        div(class="col-xs-10")
+            label(for="email") Email
+            input(type="text" name="email", placeholder="Email", id="email", class="form-control")
+
+    h3 Categoria: 
+    h3 Location: 
+    h3 Position: 
+    h3 Company: 
+    
+    div(class="row top-space")
+        div(class="col-xs-12 col-sm-6")
+            input(type="submit", value="Post", class="btn btn-info")    
+    div(class="row top-space")
+        div(class="col-xs-12 col-sm-6")
+            form(action="/app/user_jobs/user_home")
+                input(type="submit", value="Back", class="btn btn-info")
