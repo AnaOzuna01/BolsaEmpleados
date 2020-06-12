@@ -1,3 +1,22 @@
 extends ../../layout.jade
 block contenido
     h1 Welcome to User INFO
+
+    div(class="col-xs-9 col-md-7")
+        h3 Company: 
+        h3 Location: 
+        h3 Position: 
+        h3 Type: 
+        h3 Description: 
+    div(class="col-xs-3 col-md-5")
+        img(src="/public/jobs_images/", class="main-img img-float")
+            
+     
+    div(class="row top-space")
+        div(class="col-xs-12 col-sm-6")
+            form(action="/app/user_jobs/user_post")
+                input(type="submit", value="Post to a Job", class="btn btn-info")
+    div(class="row top-space")
+        div(class="col-xs-12 col-sm-6")
+            form(action="/app/user_jobs/user_home")
+                input(type="submit", value="Back", class="btn btn-info")
