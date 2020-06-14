@@ -3,22 +3,9 @@ var Job = require("./models/jobs");
 var router = express.Router();
 var fs = require("fs");
 var path = require('path');
-//var multer = require("multer");
 var job_find_middleware = require("./middlewares/find_job");
-const { Console } = require("console");
-/*
-var storage = multer.diskStorage({
-    destination: path.join(__dirname, "public/jobs_images"),
-    filename: (req, file, callback) => {
-        callback(null, file.originalname);
-    }
-});
+//const { Console } = require("console");
 
-router.use(multer({
-    storage: storage,
-    dest: path.join(__dirname, "public/jobs_images")
-}).single("logo"));
-*/
 
 router.get("/", function(req, res) {
     Job.find({})
@@ -36,7 +23,14 @@ router.get("/jobs/new", function(req, res) {
 });
 
 router.get("/user_jobs/user_home", function(req, res) {
-    res.render("app/user_jobs/user_home");
+    Job.find({})
+        .populate("creator")
+        .exec(function(err, users_jobs) {
+            if (err) console.log(err);
+            console.log(users_jobs);
+            res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+
+        })
 });
 
 router.get("/user_jobs/user_post", function(req, res) {

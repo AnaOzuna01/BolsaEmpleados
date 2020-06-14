@@ -1,7 +1,3 @@
-body {
-    font-size: 25px;
-}
-
 .right-space {
     margin-right: 1em;
 }
@@ -15,7 +11,7 @@ body {
 }
 
 .big-top-space {
-    margin-top: 200px;
+    margin-top: 25px;
 }
 
 .big-bottom-space {
@@ -202,8 +198,3 @@ label {
     border: none;
     color: royalblue;
 }
-
-
-/*.img-float {
-    float: right;
-}*/
