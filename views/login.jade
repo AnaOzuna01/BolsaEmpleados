@@ -1,5 +1,12 @@
-extends ./layout.jade
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous", rel="stylesheet")
+        link(rel="stylesheet", href="/public/css/app.css")
+        title Bolsa de Empleados
 block contenido
+    h1 Login
     div(class="col-md-6 remove-float content-center big-top-space")
         form(action="/sessions", method="POST")
             div(class="form-group")
@@ -14,4 +21,4 @@ block contenido
                 div(class="col-xs-12 col-sm-6")
                     input(type="submit", value="Login", class="btn btn-info")
                 div(class="col-xs-12 col-sm-6" text-right)
-                    a(href="/signup") Already an account?
+                    a(href="/signup") I don't have an account yet.

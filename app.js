@@ -45,7 +45,16 @@ app.get("/signup", function(req, res) {
 
 app.get("/login", function(req, res) {
     res.render("login");
+});
 
+app.get("/logout", function(req, res) {
+    req.session.destroy(function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("index");
+        }
+    });
 });
 
 app.post("/users", function(req, res) {

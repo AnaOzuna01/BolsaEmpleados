@@ -1,6 +1,13 @@
-extends ./layout.jade
-block contenido
-    div(class="col-md-8 remove-float center-block text-center big-top-space")
-    h1 Bolsa de Empleos
-    a(href="/login" class="right-space") Login
-    a(href="/signup" class="right-space") SignUp
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous", rel="stylesheet")
+        link(rel="stylesheet", href="/public/css/app.css")
+        title Bolsa de Empleados
+    body
+        block contenido
+            div(class="col-md-8 remove-float center-block text-center big-top-space")
+            h1 Bolsa de Empleos
+            a(href="/login" class="right-space") Login
+            a(href="/signup" class="right-space") SignUp
