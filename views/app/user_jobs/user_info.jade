@@ -1,22 +1,21 @@
 extends ../../layout.jade
 block contenido
-    h1 Welcome to User INFO
+    h1 Welcome to User Info
+    div(class="col-md-6 remove-float content-center big-top-space big-bottom-space")
+    form(action="/app/user_jobs/#{job.id}?_method=PUT" method="POST")
+        for jobs in users_jobs
+            h5 Compañia: #{jobs.company}
+            h5 Location: #{jobs.location}
+            h5 Position: #{jobs.position}
+            h5 Type: #{jobs.type}
+            h5 Description: #{jobs.description}
+            h5 Logo 
+            img(src="/public/jobs_images/#{jobs._id}.#{jobs.extension}")
+        
+            .col-md-2
+                form(action="#")
+                    input(type="submit", value="Post to a Job", class="btn btn-info")
 
-    div(class="col-xs-9 col-md-7")
-        h3 Company: 
-        h3 Location: 
-        h3 Position: 
-        h3 Type: 
-        h3 Description: 
-    div(class="col-xs-3 col-md-5")
-        img(src="/public/jobs_images/", class="main-img img-float")
-            
-     
-    div(class="row top-space")
-        div(class="col-xs-12 col-sm-6")
-            form(action="/app/user_jobs/user_post")
-                input(type="submit", value="Post to a Job", class="btn btn-info")
-    div(class="row top-space")
-        div(class="col-xs-12 col-sm-6")
-            form(action="/app/user_jobs/user_home")
-                input(type="submit", value="Back", class="btn btn-info")
+                form(action="/app/user_jobs/user_home")
+                    input(type="submit", value="Back", class="btn btn-warning")
+            br

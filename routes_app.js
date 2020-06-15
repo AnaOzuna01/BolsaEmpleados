@@ -4,8 +4,7 @@ var router = express.Router();
 var fs = require("fs");
 var path = require('path');
 var job_find_middleware = require("./middlewares/find_job");
-//const { Console } = require("console");
-
+var user_job_find_middleware = require("./middlewares/user_job_permission")
 
 router.get("/", function(req, res) {
     Job.find({})
@@ -29,22 +28,33 @@ router.get("/user_jobs/user_home", function(req, res) {
             if (err) console.log(err);
             console.log(users_jobs);
             res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
-
         })
 });
 
 router.get("/user_jobs/user_post", function(req, res) {
     res.render("app/user_jobs/user_post");
 });
-
+//Funciona para ver todos
+/*
 router.get("/user_jobs/user_info", function(req, res) {
-    res.render("app/user_jobs/user_info");
+    Job.find({})
+        .populate("creator")
+        .exec(function(err, users_jobs) {
+            if (err) console.log(err);
+            console.log(users_jobs);
+            res.render("app/user_jobs/user_info", { users_jobs: users_jobs });
+        })
 });
-
+*/
 router.all("/jobs/:id*", job_find_middleware);
-
 router.get("/jobs/:id/edit", function(req, res) {
     res.render("app/jobs/edit");
+});
+
+//Para UserFind
+router.all("/user_jobs/:id*", user_job_find_middleware);
+router.get("/user_jobs/:id/user_info", function(req, res) {
+    res.render("app/user_jobs/user_info");
 });
 
 router.route("/jobs/:id/")
@@ -67,6 +77,24 @@ router.route("/jobs/:id/")
 
         } else {
             res.render("app/jobs/" + req.params.id + "/edit");
+        }
+    })
+})
+
+.put(function(req, res) {
+
+    res.locals.job.company = req.body.company;
+    res.locals.job.location = req.body.location;
+    res.locals.job.position = req.body.position;
+    res.locals.job.type = req.body.type;
+    res.locals.job.description = req.body.description;
+
+    res.locals.job.save(function(err) {
+        if (!err) {
+            res.render("app/user_jobs/user_home");
+
+        } else {
+            res.render("app/user_jobs/" + req.params.id + "/user_info");
         }
     })
 })
