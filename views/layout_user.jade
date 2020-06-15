@@ -8,16 +8,12 @@ html(lang="en")
     body
         nav(class="large-padding black white-text sticky-position search-bar")
             ul
-                li 
-                    a(href="/app") Home
-                li 
-                    a(href="/app/jobs") Jobs
-                li 
-                    a(href="/app/jobs/new") Post a Job
                 li
-                    input(type="text", placeholder="Search")
+                    a(href="/app/user_jobs/user_home") Home
                 li
-                    a(href="/" class="right-space") Logout
+                    a(href="/app/user_jobs/user_post") Post
+                li
+                    a(href="/app/user_jobs/user_info") Info
         p
         block contenido
 
