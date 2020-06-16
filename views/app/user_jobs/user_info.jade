@@ -1,21 +1,31 @@
 extends ../../layout_user.jade
 block contenido
-    h1 Welcome to User Info
     div(class="col-md-6 remove-float content-center big-top-space big-bottom-space")
-    form(action="/app/user_jobs/#{job.id}?_method=PUT" method="POST")
-        for jobs in users_jobs
-            h5 Compañia: #{jobs.company}
-            h5 Location: #{jobs.location}
-            h5 Position: #{jobs.position}
-            h5 Type: #{jobs.type}
-            h5 Description: #{jobs.description}
-            h5 Logo 
-            img(src="/public/jobs_images/#{jobs._id}.#{jobs.extension}")
+    h1 Welcome to User Info
+    form(action="/app/user_jobs" method="POST" mailto:anamol2699@hotmail.com) 
+        div(class="form-group")
+            label(for= "company")  Company
+            input(type="text", name="company", placeholder="Company", id="company", class="form-control", value="#{job.company}")
+            
+            label(for= "location")  location
+            input(type="text", name="location", placeholder="location", id="location", class="form-control", value="#{job.location}")
+            
+            label(for= "position")  Position
+            input(type="text", name="position", placeholder="Position", id="position", class="form-control", value="#{job.position}")
+            
+            label(for= "type")  Type
+            input(type="text", name="company", placeholder="Type", id="type", class="form-control", value="#{job.type}")
+            
+            label(for= "description")  Description
+            input(type="text", name="description", placeholder="Description", id="description", class="form-control", value="#{job.description}")
+                
+            label(for= "logo")  Logo
+            input(type="text", name="logo", placeholder="Logo", id="logo", class="form-control", value="#{job.extension}")
+            
+            div(class="row top-space")
+                div(class="col-xs-12 col-sm-6")
+                    form(action="#")
+                        input(type="submit", value="Post to a Job", class="btn btn-info")
+                    form(action="/app/user_jobs/user_home")
+                        input(type="submit", value="Back", class="btn btn-warning")
         
-            .col-md-2
-                form(action="#")
-                    input(type="submit", value="Post to a Job", class="btn btn-info")
-
-                form(action="/app/user_jobs/user_home")
-                    input(type="submit", value="Back", class="btn btn-warning")
-            br

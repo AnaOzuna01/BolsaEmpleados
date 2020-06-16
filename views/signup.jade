@@ -19,7 +19,13 @@ block contenido
             div(class="form-group")
                 label(for="username") Username
                 input(type="text" name="username", placeholder="Username", id="Username", class="form-control")
-            
+
+            div(class="form-group")
+                label(for="role") Role
+                select(name="role" id="role", class="form-control")
+                    option(value="Administrator") Administrator
+                    option(value="Poster") Poster
+
             div(class="row top-space")
                 div(class="col-xs-12 col-sm-6")
                     input(type="submit", value="SignUp", class="btn btn-info")

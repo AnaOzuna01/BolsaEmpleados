@@ -4,7 +4,6 @@ var router = express.Router();
 var fs = require("fs");
 var path = require('path');
 var job_find_middleware = require("./middlewares/find_job");
-var user_job_find_middleware = require("./middlewares/user_job_permission")
 
 router.get("/", function(req, res) {
     Job.find({})
@@ -46,15 +45,19 @@ router.get("/user_jobs/user_info", function(req, res) {
         })
 });
 */
+
 router.all("/jobs/:id*", job_find_middleware);
+
 router.get("/jobs/:id/edit", function(req, res) {
-    res.render("app/jobs/edit");
+    Job.findById(req.params.id, function(err, job) {
+        res.render("app/jobs/edit", { job: job });
+    })
 });
 
-//Para UserFind
-router.all("/user_jobs/:id*", user_job_find_middleware);
 router.get("/user_jobs/:id/user_info", function(req, res) {
-    res.render("app/user_jobs/user_info");
+    Job.findById(req.params.id, function(err, job) {
+        res.render("app/user_jobs/user_info", { job: job });
+    })
 });
 
 router.route("/jobs/:id/")
@@ -77,24 +80,6 @@ router.route("/jobs/:id/")
 
         } else {
             res.render("app/jobs/" + req.params.id + "/edit");
-        }
-    })
-})
-
-.put(function(req, res) {
-
-    res.locals.job.company = req.body.company;
-    res.locals.job.location = req.body.location;
-    res.locals.job.position = req.body.position;
-    res.locals.job.type = req.body.type;
-    res.locals.job.description = req.body.description;
-
-    res.locals.job.save(function(err) {
-        if (!err) {
-            res.render("app/user_jobs/user_home");
-
-        } else {
-            res.render("app/user_jobs/" + req.params.id + "/user_info");
         }
     })
 })

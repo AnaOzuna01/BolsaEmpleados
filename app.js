@@ -17,7 +17,6 @@ app.use("/public", express.static('public'));
 app.use(bodyParser.json()); //Para peticiones application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.use(methodOverride("_method"))
 
 var sessionMiddleware = session({
@@ -58,7 +57,13 @@ app.get("/logout", function(req, res) {
 });
 
 app.post("/users", function(req, res) {
-    var user = new User({ email: req.body.email, password: req.body.password, password_confirmation: req.body.password_confirmation, username: req.body.username });
+    var user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        password_confirmation: req.body.password_confirmation,
+        username: req.body.username,
+        role: req.body.role
+    });
 
 
     user.save().then(function(us) {
