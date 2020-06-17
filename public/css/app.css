@@ -92,16 +92,6 @@ img {
     width: 300px;
 }
 
-.sticky-position-footer {
-    /*position: fixed;*/
-    margin-top: 100px;
-    bottom: 0;
-    width: 100%;
-    background-color: lightgrey;
-    color: black;
-    text-align: center;
-}
-
 .margin-right {
     margin-right: 10px;
     font-size: 22px;
@@ -111,6 +101,39 @@ label {
     font-size: 25px;
     font-style: normal;
 }
+.Index {
+    text-align: center;
+    color: #17706e;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 50px;
+
+}
+/*index*/
+.BE{
+    font-size: 76px;
+}
+.right-space{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: #b6eb7a;
+}
+/*footer*/
+.Footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #fb7813;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
+.BestTeam{
+    font-size: 12px;
+}
+.Pweb{
+    font-size: 12px;
+}
 
 
 /*USER_HOME CSS -> MELISSA*/
@@ -118,6 +141,7 @@ label {
 .search-bar {
     overflow: hidden;
     background-color: #b6eb7a;
+    height: 70px;
 }
 
 .search-bar a {
@@ -127,12 +151,13 @@ label {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 19px;
+    font-weight: bold ;
 }
 
 .search-bar a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #f7f7ee;
+    color: #17706e;
 }
 
 .search-bar a.postjob {
