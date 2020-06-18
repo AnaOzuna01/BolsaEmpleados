@@ -14,17 +14,15 @@ block contenido
             input(type="text", name="position", placeholder="Position", id="position", class="form-control", value="#{job.position}")
             
             label(for= "type")  Type
-            input(type="text", name="company", placeholder="Type", id="type", class="form-control", value="#{job.type}")
+            input(type="text", name="type", placeholder="Type", id="type", class="form-control", value="#{job.type}")
             
             label(for= "description")  Description
             input(type="text", name="description", placeholder="Description", id="description", class="form-control", value="#{job.description}")
             
-                 
-            //label(for= "logo")  Logo
-            //input(type="text", name="logo", placeholder="Logo", id="logo", class="form-control", value="#{job.extension}")
-            
             div(class="row top-space")
                 div(class="col-xs-12 col-sm-6")
-                    input(type="submit" value="Post to a Job" class="btn btn-info")
-                    br
-                    a(href="/app/user_jobs/user_home") Go Back   
+                    a(href="/app/user_jobs/user_post") Post to a job
+            div(class="row top-space")
+                div(class="col-xs-12 col-sm-6")
+                    form(action="/app/user_jobs/user_home")
+                        input(type="submit", value="Back", class="btn btn-warning")

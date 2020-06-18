@@ -126,12 +126,13 @@ router.route("/jobs")
 
 
 //User Post
-router.get("/user_jobs/user_post", function(req, res) {
-    res.render("app/user_jobs/user_post");
+router.get("/user_jobs/:id/user_post", function(req, res) {
+    Job.findById(req.params.id, function(err, job) {
+        res.render("app/user_jobs/user_post", { job: job });
+    })
 });
 
 //User Jobs
-
 
 router.get("/user_jobs/:id/user_info", function(req, res) {
     Job.findById(req.params.id, function(err, job) {

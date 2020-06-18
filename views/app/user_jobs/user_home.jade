@@ -21,7 +21,7 @@ block contenido
                         td #{jobs.position}
                         td #{jobs.company}
                         td
-                            a(href="/app/user_jobs/user_post", class="right-space color") Post
+                            a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
                     br
             br
@@ -41,7 +41,7 @@ block contenido
                         td #{jobs.position}
                         td #{jobs.company}
                         td
-                            a(href="/app/user_jobs/user_post", class="right-space color") Post
+                            a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
                     br
             br
