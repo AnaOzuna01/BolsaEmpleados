@@ -15,10 +15,13 @@ html(lang="en")
                 li 
                     a(href="/app/jobs/new") Post a Job
                 li
-                    input(type="text", placeholder="Search")
+                    input(type="text", id="search-text", placeholder="Search")
+                    button(class="btn btn-info mb-2" id="search-button")
                 li
                     a(href="/" class="right-space") Logout
         p
+
+        script(type="text/javascript", src="/assets/javascript.js")
         block contenido
 
     include footer.jade

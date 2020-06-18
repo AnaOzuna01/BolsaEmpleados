@@ -30,9 +30,6 @@ router.get("/user_jobs/user_home", function(req, res) {
         })
 });
 
-router.get("/user_jobs/user_post", function(req, res) {
-    res.render("app/user_jobs/user_post");
-});
 //Funciona para ver todos
 /*
 router.get("/user_jobs/user_info", function(req, res) {
@@ -51,12 +48,6 @@ router.all("/jobs/:id*", job_find_middleware);
 router.get("/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
         res.render("app/jobs/edit", { job: job });
-    })
-});
-
-router.get("/user_jobs/:id/user_info", function(req, res) {
-    Job.findById(req.params.id, function(err, job) {
-        res.render("app/user_jobs/user_info", { job: job });
     })
 });
 
@@ -132,5 +123,22 @@ router.route("/jobs")
 
     });
 });
+
+
+//User Post
+router.get("/user_jobs/user_post", function(req, res) {
+    res.render("app/user_jobs/user_post");
+});
+
+//User Jobs
+
+
+router.get("/user_jobs/:id/user_info", function(req, res) {
+    Job.findById(req.params.id, function(err, job) {
+        res.render("app/user_jobs/user_info", { job: job });
+    })
+});
+
+router.route("user_jobs/:id");
 
 module.exports = router;
