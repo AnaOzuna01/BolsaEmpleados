@@ -4,6 +4,10 @@
     font-size: 30px;
     color: #b6eb7a;
 }
+.right-space:hover{
+    text-decoration:none;
+    color:teal;
+}
 
 .remove-float {
     float: none;
@@ -241,7 +245,7 @@ label {
     border: none;
     color: royalblue;
 }
-
+/*index.jade*/
 .Edit{
     margin-right: 1em;
     color: #fb7813;
@@ -264,4 +268,32 @@ a.Edit:hover{
 .col-md-10{
 
     font-family: 'Trocchi', serif;
+}
+
+a.Post-color:hover{
+    color: orange;
+    text-decoration: none;
+}
+a.Post-color{
+    color: #17706e;
+    margin-right: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;;
+}
+
+a.Info-color:hover{
+    color: orange;
+    text-decoration: none;
+}
+a.Info-color{
+    color: #17706e;
+    margin-right: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.PostJob{
+    font-family: 'Stencil Std', fantasy;
+}
+/* new.jade*/
+
+.form-group{
+    font-family: 'Georgia', serif;
 }
