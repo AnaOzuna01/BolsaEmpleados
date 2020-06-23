@@ -1,5 +1,8 @@
 .right-space {
     margin-right: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: #b6eb7a;
 }
 
 .remove-float {
@@ -65,15 +68,18 @@ form.link {
 }
 
 form.link input[type="submit"] {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: transparent;
     border: none;
-    color: red;
+    color: #fb7813;
+    font-size: 20px;
 }
 
 .img-container {
     width: 700px;
     max-width: 100%;
     margin: 0 auto;
+    font-family: 'Libre Baskerville', serif;
 }
 
 .img-container h1 {
@@ -112,14 +118,25 @@ label {
 .BE{
     font-size: 76px;
 }
-.right-space{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
-    color: #b6eb7a;
-}
+
+
 /*footer*/
+
 .Footer{
-    position: fixed;
+    clear: both;
+    position: relative;
+    margin-top: 200px;
+    font-size: 12px;
+    text-align: center;
+    bottom: 0px;
+    background-color: #fb7813;
+    color: white;
+}
+/*
+
+.Footer{
+    position: relative;
+    align-self: flex-end;
     bottom: 0;
     width: 100%;
     height: 70px;
@@ -128,6 +145,7 @@ label {
     text-align: center;
     font-size: 12px;
 }
+*/
 .BestTeam{
     font-size: 12px;
 }
@@ -222,4 +240,28 @@ label {
 .color {
     border: none;
     color: royalblue;
+}
+
+.Edit{
+    margin-right: 1em;
+    color: #fb7813;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+a.Edit:hover{
+    color: #17706e;
+    text-decoration:none;
+}
+
+.white.border.tr.large-padding{
+    background-color: teal;
+}
+.row{
+    background-color: white;
+    
+}
+.col-md-10{
+
+    font-family: 'Trocchi', serif;
 }

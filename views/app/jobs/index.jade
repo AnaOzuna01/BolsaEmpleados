@@ -13,6 +13,6 @@ block contenido
                         h4= job.location
                         h4= job.description
                     .col-md-2
-                        a(href="/app/jobs/#{job._id}/edit", class="right-space") Edit
+                        a(href="/app/jobs/#{job._id}/edit", class="Edit") Edit
                         form(action="/app/jobs/#{job._id}?_method=DELETE", class="link", method="POST")
                             input(type="submit", value="Delete")
