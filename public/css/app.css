@@ -4,9 +4,10 @@
     font-size: 30px;
     color: #b6eb7a;
 }
-.right-space:hover{
-    text-decoration:none;
-    color:teal;
+
+.right-space:hover {
+    text-decoration: none;
+    color: teal;
 }
 
 .remove-float {
@@ -111,22 +112,25 @@ label {
     font-size: 25px;
     font-style: normal;
 }
+
 .Index {
     text-align: center;
     color: #17706e;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 50px;
-
 }
+
+
 /*index*/
-.BE{
+
+.BE {
     font-size: 76px;
 }
 
 
 /*footer*/
 
-.Footer{
+.Footer {
     clear: both;
     position: relative;
     margin-top: 200px;
@@ -136,6 +140,8 @@ label {
     background-color: #fb7813;
     color: white;
 }
+
+
 /*
 
 .Footer{
@@ -150,10 +156,12 @@ label {
     font-size: 12px;
 }
 */
-.BestTeam{
+
+.BestTeam {
     font-size: 12px;
 }
-.Pweb{
+
+.Pweb {
     font-size: 12px;
 }
 
@@ -174,7 +182,7 @@ label {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 19px;
-    font-weight: bold ;
+    font-weight: bold;
 }
 
 .search-bar a:hover {
@@ -245,55 +253,74 @@ label {
     border: none;
     color: royalblue;
 }
+
+
 /*index.jade*/
-.Edit{
+
+.Edit {
     margin-right: 1em;
     color: #fb7813;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-}
-a.Edit:hover{
-    color: #17706e;
-    text-decoration:none;
 }
 
-.white.border.tr.large-padding{
+a.Edit:hover {
+    color: #17706e;
+    text-decoration: none;
+}
+
+.white.border.tr.large-padding {
     background-color: teal;
 }
-.row{
-    background-color: white;
-    
-}
-.col-md-10{
 
+.row {
+    background-color: white;
+}
+
+.col-md-10 {
     font-family: 'Trocchi', serif;
 }
 
-a.Post-color:hover{
+a.Post-color:hover {
     color: orange;
     text-decoration: none;
-}
-a.Post-color{
-    color: #17706e;
-    margin-right: 1em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;;
 }
 
-a.Info-color:hover{
+a.Post-color {
+    color: #17706e;
+    margin-right: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    ;
+}
+
+a.Info-color:hover {
     color: orange;
     text-decoration: none;
 }
-a.Info-color{
+
+a.Info-color {
     color: #17706e;
     margin-right: 1em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.PostJob{
+
+.PostJob {
     font-family: 'Stencil Std', fantasy;
 }
+
+
 /* new.jade*/
 
-.form-group{
+.form-group {
     font-family: 'Georgia', serif;
+}
+
+h3.bold {
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

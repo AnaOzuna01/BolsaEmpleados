@@ -6,11 +6,22 @@ block contenido
                 .row
                     .col-md-10
                         h3= job.category
+                        
+                        h3.bold Type:
                         h4= job.type
+                        
+                        h3.bold Company:
                         h4= job.company
+
                         img(src="/public/jobs_images/#{job._id}.#{job.extension}")
+                        
+                        h3.bold Position:
                         h4= job.position
+
+                        h3.bold Location:
                         h4= job.location
+
+                        h3.bold Description:
                         h4= job.description
                     .col-md-2
                         a(href="/app/jobs/#{job._id}/edit", class="Edit") Edit
