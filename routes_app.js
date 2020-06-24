@@ -9,7 +9,7 @@ var env = require("dotenv").config();
 var swal = require("sweetalert");
 
 router.get("/", function(req, res) {
-    Job.find({})
+    Job.find({}, null, { sort: { created: 1 } })
         .populate("creator")
         .exec(function(err, jobs) {
             if (err) console.log(err);
@@ -24,7 +24,7 @@ router.get("/jobs/new", function(req, res) {
 });
 
 router.get("/user_jobs/user_home", function(req, res) {
-    Job.find({})
+    Job.find({}, null, { sort: { created: 1 } })
         .populate("creator")
         .exec(function(err, users_jobs) {
             if (err) console.log(err);
@@ -32,19 +32,6 @@ router.get("/user_jobs/user_home", function(req, res) {
             res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
         })
 });
-
-//Funciona para ver todos
-/*
-router.get("/user_jobs/user_info", function(req, res) {
-    Job.find({})
-        .populate("creator")
-        .exec(function(err, users_jobs) {
-            if (err) console.log(err);
-            console.log(users_jobs);
-            res.render("app/user_jobs/user_info", { users_jobs: users_jobs });
-        })
-});
-*/
 
 router.all("/jobs/:id*", job_find_middleware);
 
@@ -91,7 +78,7 @@ router.route("/jobs/:id/")
 
 router.route("/jobs")
     .get(function(req, res) {
-        Job.find({ creator: res.locals.user._id }, function(err, jobs) {
+        Job.find({ creator: res.locals.user._id }, null, { sort: { created: 1 } }, function(err, jobs) {
             if (err) { res.redirect("/app"); return; }
             res.render("app/jobs/index", { jobs: jobs });
 

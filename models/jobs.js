@@ -9,7 +9,11 @@ var job_schema = new Schema({
     position: { type: String, required: true },
     location: { type: String, required: true },
     description: { type: String, required: true },
-    creator: { type: Schema.Types.ObjectId, ref: "User" }
+    creator: { type: Schema.Types.ObjectId, ref: "User" },
+    created: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 
