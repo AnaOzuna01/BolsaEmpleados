@@ -5,6 +5,8 @@ var fs = require("fs");
 var path = require('path');
 var job_find_middleware = require("./middlewares/find_job");
 var nodemailer = require("nodemailer");
+var env = require("dotenv").config();
+var swal = require("sweetalert");
 
 router.get("/", function(req, res) {
     Job.find({})
@@ -131,37 +133,47 @@ router.get("/user_jobs/:id/user_post", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
         res.render("app/user_jobs/user_post", { job: job });
     })
-
-    //Create reusable transport method (opens pool of SMTP connections)
-    var smtpTransport = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: "anaozuna2699@gmail.com",
-            pass: "Anamiguelina"
-        }
-    });
-
-    //Setup e-mail data with unicode symbols
-    var mailOptions = {
-        from: req.body.email, //Sender address
-        to: "anaozuna2699@gmail.com <anaozuna2699@gmail.com>", //List of receivers
-        subject: "Interested in job.",
-        text: req.body.category + req.body.location + req.body.position + req.body.company,
-    }
-
-    //Send mail with defined transport object
-    smtpTransport.sendMail(mailOptions, function(err, res) {
-        if (err) {
-            console.log(err);
-            res.render("app/user_jobs/error", { title: "Error sending the mail." });
-        } else {
-            console.log("Message sent: " + res.message);
-            res.render("app/user_jobs/send", { title: "The message was successfully sending." });
-        }
-    });
-
 });
 
+router.post("/user_jobs/:id/user_post", function(req, res) {
+
+    "use strict";
+    const nodemailer = require("nodemailer");
+
+    // async..await is not allowed in global scope, must use a wrapper
+    async function main() {
+        // Generate test SMTP service account from ethereal.email
+        // Only needed if you don't have a real mail account for testing
+        let testAccount = await nodemailer.createTestAccount();
+
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.GMAIL_EMAIL, // generated ethereal use
+                pass: process.env.GMAIL_PASS // generated ethereal password
+            },
+        });
+
+        // send mail with defined transport object
+        let info = await transporter.sendMail({
+            from: req.body.email, // sender address
+            to: "anamol2699@hotmail.com", // list of receivers
+            subject: "Interested in job.", // Subject line
+            text: "Postulant: " + req.body.email + " Category: " + req.body.category + " Location: " + req.body.location + " Position: " + req.body.position + " Company: " + req.body.company, // plain text body
+        });
+
+        console.log("Message sent: %s", info.messageId);
+
+        //swal("Confirmation!", "¡The message was sent successfully!", "success");
+        //alert("¡The message was sent successfully!");
+
+    }
+
+    main().catch(console.error);
+});
 //User Jobs
 
 router.get("/user_jobs/:id/user_info", function(req, res) {
