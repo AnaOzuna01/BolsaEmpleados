@@ -12,17 +12,17 @@ block contenido
                     th Position
                     th Company
                     th Views
-
-            for jobs in users_jobs
-                if ( jobs.category == "Design")
-                    tr 
-                        td #{jobs.location}
-                        td #{jobs.position}
-                        td #{jobs.company}
-                        td
-                            a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
-                            a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                    br
+                    
+                for jobs in users_jobs
+                    if ( jobs.category == "Design")
+                        tr 
+                            td #{jobs.location}
+                            td #{jobs.position}
+                            td #{jobs.company}
+                            td
+                                a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                                a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
+                        br
             br
             h1.prog Programming 
             hr
@@ -33,14 +33,14 @@ block contenido
                     th Position
                     th Company
                     th Views
-            for jobs in users_jobs
-                if ( jobs.category == "Programming")
-                    tr 
-                        td #{jobs.location}
-                        td #{jobs.position}
-                        td #{jobs.company}
-                        td
-                            a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
-                            a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                    br
-            br
+                for jobs in users_jobs
+                    if ( jobs.category == "Programming")
+                        tr 
+                            td #{jobs.location}
+                            td #{jobs.position}
+                            td #{jobs.company}
+                            td
+                             a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
+                        br
+                br
