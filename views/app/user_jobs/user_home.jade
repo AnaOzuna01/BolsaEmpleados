@@ -2,6 +2,7 @@ extends ../../layout_user.jade
 
 block contenido
     
+    
             h1.design  Design
             hr
             br
@@ -12,6 +13,7 @@ block contenido
                     th Position
                     th Company
                     th Views
+<<<<<<< HEAD
 
             for jobs in users_jobs
                 if ( jobs.category == "Design")
@@ -23,6 +25,19 @@ block contenido
                             a(href="/app/user_jobs/#{jobs._id}/user_post", class="Post-color") Post
                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="Info-color") Info
                     br
+=======
+                    
+                for jobs in users_jobs
+                    if ( jobs.category == "Design")
+                        tr 
+                            td #{jobs.location}
+                            td #{jobs.position}
+                            td #{jobs.company}
+                            td
+                                a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                                a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
+                        br
+>>>>>>> 559f8291a96be3b28c46fcae149d3161dc7283d4
             br
             h1.prog Programming 
             hr
@@ -33,6 +48,7 @@ block contenido
                     th Position
                     th Company
                     th Views
+<<<<<<< HEAD
             for jobs in users_jobs
                 if ( jobs.category == "Programming")
                     tr 
@@ -44,3 +60,16 @@ block contenido
                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="Info-color") Info
                     br
             br
+=======
+                for jobs in users_jobs
+                    if ( jobs.category == "Programming")
+                        tr 
+                            td #{jobs.location}
+                            td #{jobs.position}
+                            td #{jobs.company}
+                            td
+                             a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
+                        br
+                br
+>>>>>>> 559f8291a96be3b28c46fcae149d3161dc7283d4
