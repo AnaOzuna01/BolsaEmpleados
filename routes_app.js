@@ -34,7 +34,7 @@ router.get("/user_jobs/user_home", function(req, res) {
                 position: regex
             },{
                 location: regex
-            }]}, null, { sort: { created: 1 } })
+            }]}, null, { sort: { created: -1 } })
             .populate("creator")
             .exec(function(err, users_jobs) {
             if (err) console.log(err);
@@ -43,7 +43,7 @@ router.get("/user_jobs/user_home", function(req, res) {
         })
     }
     else{
-        Job.find({})
+        Job.find({},null, { sort: { created: -1 }})
         .populate("creator")
         .exec(function(err, users_jobs) {
             if (err) console.log(err);
