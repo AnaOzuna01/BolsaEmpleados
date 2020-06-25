@@ -24,32 +24,33 @@ router.get("/jobs/new", function(req, res) {
 });
 
 router.get("/user_jobs/user_home", function(req, res) {
-    if(req.query.search){
+    if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Job.find({"$or": [{
-            category: regex
-            }, {
-                company:regex
-            }, {
-                position: regex
-            },{
-                location: regex
-            }]}, null, { sort: { created: -1 } })
+        Job.find({
+                "$or": [{
+                    category: regex
+                }, {
+                    company: regex
+                }, {
+                    position: regex
+                }, {
+                    location: regex
+                }]
+            }, null, { sort: { created: -1 } })
             .populate("creator")
             .exec(function(err, users_jobs) {
-            if (err) console.log(err);
+                if (err) console.log(err);
                 console.log(users_jobs);
-            res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
-        })
-    }
-    else{
-        Job.find({},null, { sort: { created: -1 }})
-        .populate("creator")
-        .exec(function(err, users_jobs) {
-            if (err) console.log(err);
-            console.log(users_jobs);
-            res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
-        })
+                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+            })
+    } else {
+        Job.find({}, null, { sort: { created: -1 } }).limit(10)
+            .populate("creator")
+            .exec(function(err, users_jobs) {
+                if (err) console.log(err);
+                console.log(users_jobs);
+                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+            })
     }
 });
 
@@ -191,7 +192,7 @@ router.get("/user_jobs/:id/user_info", function(req, res) {
 
 router.route("user_jobs/:id");
 
-function escapeRegex(text){
+function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
 
