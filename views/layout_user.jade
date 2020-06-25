@@ -13,6 +13,11 @@ html(lang="en")
                 
                 li
                     a(href="/app/user_jobs/user_home") Jobs
+                li
+                    form(action="user_home" method="GET")
+                        input(type="text", name="search", placeholder="Search")
+                        input(type="submit" value="Search")
+                    
         p
         block contenido
 

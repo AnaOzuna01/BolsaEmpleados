@@ -24,13 +24,33 @@ router.get("/jobs/new", function(req, res) {
 });
 
 router.get("/user_jobs/user_home", function(req, res) {
-    Job.find({}, null, { sort: { created: 1 } })
+    if(req.query.search){
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Job.find({"$or": [{
+            category: regex
+            }, {
+                company:regex
+            }, {
+                position: regex
+            },{
+                location: regex
+            }]}, null, { sort: { created: 1 } })
+            .populate("creator")
+            .exec(function(err, users_jobs) {
+            if (err) console.log(err);
+                console.log(users_jobs);
+            res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+        })
+    }
+    else{
+        Job.find({})
         .populate("creator")
         .exec(function(err, users_jobs) {
             if (err) console.log(err);
             console.log(users_jobs);
             res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
         })
+    }
 });
 
 router.all("/jobs/:id*", job_find_middleware);
@@ -170,5 +190,9 @@ router.get("/user_jobs/:id/user_info", function(req, res) {
 });
 
 router.route("user_jobs/:id");
+
+function escapeRegex(text){
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = router;
