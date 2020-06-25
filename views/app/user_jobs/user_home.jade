@@ -2,46 +2,66 @@ extends ../../layout_user.jade
 
 block contenido
     
-            h1.design  Design
-            hr
-            br
+    
+    h1.design  Design
+    hr
+    br
 
-            table.tabla
+    table.tabla
+        tr 
+            th Location
+            th Position
+            th Company
+            th Views
+            
+        for jobs in users_jobs
+            if ( jobs.category == "Design")
+            
                 tr 
-                    th Location
-                    th Position
-                    th Company
-                    th Views
-                    
-                for jobs in users_jobs
-                    if ( jobs.category == "Design")
-                    
-                        tr 
-                            td #{jobs.location}
-                            td #{jobs.position}
-                            td #{jobs.company}
-                            td
-                                a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
-                                a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                        br
-            br
-            h1.prog Programming 
-            hr
-            br
-            table.tabla
-                tr 
-                    th Location
-                    th Position
-                    th Company
-                    th Views
-                for jobs in users_jobs
-                    if ( jobs.category == "Programming")
-                        tr 
-                            td #{jobs.location}
-                            td #{jobs.position}
-                            td #{jobs.company}
-                            td
-                             a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
-                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                        br
+                    td #{jobs.location}
+                    td #{jobs.position}
+                    td #{jobs.company}
+                    td
+                        a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                        a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
                 br
+    nav(aria-label="Page navigation example")
+        ul(class="pagination")
+            li(class="page-item")
+                a(class="page-link" href="#") Previous
+            
+            li(class="page-item")
+                a(class="page-link" href="#") 1
+            
+            li(class="page-item")
+                a(class="page-link" href="#") 2
+                
+            li(class="page-item")
+                a(class="page-link" href="#") 3
+                
+            li(class="page-item")
+                a(class="page-link" href="#")
+                    i(class="fas fa-arrow-alt-circle-right")        
+       
+    br
+    h1.prog Programming 
+    hr
+    br
+    
+    table.tabla
+        tr 
+            th Location
+            th Position
+            th Company
+            th Views
+        for jobs in users_jobs
+            if ( jobs.category == "Programming")
+                tr 
+                    td #{jobs.location}
+                    td #{jobs.position}
+                    td #{jobs.company}
+                    td
+                        a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                        a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
+                br
+        br
