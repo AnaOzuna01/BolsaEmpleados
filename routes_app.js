@@ -9,7 +9,7 @@ var env = require("dotenv").config();
 var swal = require("sweetalert");
 
 router.get("/", function(req, res) {
-    Job.find({}, null, { sort: { created: 1 } })
+    Job.find({}, null, { sort: { created: -1 } })
         .populate("creator")
         .exec(function(err, jobs) {
             if (err) console.log(err);
@@ -99,7 +99,7 @@ router.route("/jobs/:id/")
 
 router.route("/jobs")
     .get(function(req, res) {
-        Job.find({ creator: res.locals.user._id }, null, { sort: { created: 1 } }, function(err, jobs) {
+        Job.find({ creator: res.locals.user._id }, null, { sort: { created: -1 } }, function(err, jobs) {
             if (err) { res.redirect("/app"); return; }
             res.render("app/jobs/index", { jobs: jobs });
 
@@ -182,8 +182,8 @@ router.post("/user_jobs/:id/user_post", function(req, res) {
 
     main().catch(console.error);
 });
-//User Jobs
 
+//User Jobs
 router.get("/user_jobs/:id/user_info", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
         res.render("app/user_jobs/user_info", { job: job });

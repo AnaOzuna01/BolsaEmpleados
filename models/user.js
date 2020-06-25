@@ -18,8 +18,8 @@ var user_schema = new Schema({
     username: { type: String, required: true, maxlength: [50, "Username muy grande."] },
     password: { type: String, minlength: [8, "El password es muy corto."], validate: password_validation },
     email: { type: String, required: "El correo es obligatorio.", match: email_match },
-    role: { type: String, required: "El rol es obligatorio." },
-    job: { type: String, enum: { values: values_job, message: "Opción no válida" } }
+    role: { type: String, enum: { values: values_job, message: "Opción no válida" }, required: "El rol es obligatorio." },
+    job: { type: String }
 });
 user_schema.virtual("password_confirmation").get(function() {
     return this.p_c;

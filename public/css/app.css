@@ -350,7 +350,10 @@ h3.bold {
 }
 
 .container {
-    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.hide-button {
+    display: none;
 }
