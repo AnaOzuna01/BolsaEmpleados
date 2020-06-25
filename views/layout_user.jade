@@ -4,6 +4,8 @@ html(lang="en")
         title Employee Stock 
         meta(charset="UTF-8")
         link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous", rel="stylesheet")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+
         link(rel="stylesheet", href="/public/css/app.css")
     body
         nav(class="large-padding black white-text sticky-position search-bar")
@@ -14,9 +16,10 @@ html(lang="en")
                 li
                     a(href="/app/user_jobs/user_home") Jobs
                 li
-                    form(action="user_home" method="GET")
-                        input(type="text", name="search", placeholder="Search")
-                        input(type="submit" value="Search")
+                    form(class="search-bar-example" action="user_home" method="GET")
+                        input(type="text", name="search", placeholder="Search...")
+                        button(type="submit" class="button")
+                            i.fa.fa-search
                     
         p
         block contenido

@@ -204,6 +204,36 @@ label {
     font-size: 17px;
 }
 
+.search-bar-example input[type=text] {
+    margin-top: -20px;
+    padding: 5px;
+    font-size: 20px;
+    border: 1px solid grey;
+    float: left;
+    width: 55%;
+    background: #f1f1f1;
+}
+
+.search-bar-example .button {
+    margin-top: -20px;
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 15px;
+    border: 1px solid grey;
+    border-left: none;
+    /* Prevent double borders */
+    cursor: pointer;
+}
+
+.search-bar-example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 .design {
     text-align: center;
     color: #fb7813;
