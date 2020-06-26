@@ -25,23 +25,25 @@ block contenido
                         a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
                         a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
                 br
-    nav(aria-label="Page navigation example")
+                
+    nav(class="Page navigation example")
         ul(class="pagination")
             li(class="page-item")
-                a(class="page-link" href="#") Previous
+                button(type="submit" class="page-link")
+                    i.fa.fa-arrow-circle-left
             
             li(class="page-item")
-                a(class="page-link" href="#") 1
-            
+                button(type="submit" class="page-link" value="1") 1
+
             li(class="page-item")
-                a(class="page-link" href="#") 2
+                button(type="submit" class="page-link" value="2") 2
+
+            li(class="page-item")
+                button(type="submit" class="page-link" value="3") 3
                 
             li(class="page-item")
-                a(class="page-link" href="#") 3
-                
-            li(class="page-item")
-                a(class="page-link" href="#")
-                    i(class="fas fa-arrow-alt-circle-right")        
+                button(type="submit" class="page-link")
+                    i.fa.fa-arrow-circle-right        
        
     br
     h1.prog Programming 
@@ -65,3 +67,17 @@ block contenido
                         a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
                 br
         br
+    nav(class="Page navigation example")
+        ul(class="pagination")
+            li(class="page-item")
+                button(type="submit" class="page-link")
+                    i.fa.fa-arrow-circle-left
+            li(class="page-item")
+                button(type="submit" class="page-link" value="1") 1
+            li(class="page-item")
+                button(type="submit" class="page-link" value="2") 2
+            li(class="page-item")
+                button(type="submit" class="page-link" value="3") 3
+            li(class="page-item")
+                button(type="submit" class="page-link")
+                    i.fa.fa-arrow-circle-right

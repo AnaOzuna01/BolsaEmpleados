@@ -39,7 +39,7 @@
     width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
-    }
+}
 
 .white-text {
     color: white;
@@ -383,4 +383,15 @@ label.info {
 label.howToApply p.info {
     font-weight: inherit;
     font-size: 30px;
+}
+
+.pagination {
+    float: right;
+    margin-right: 15.7em;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
 }
