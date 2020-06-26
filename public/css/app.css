@@ -357,3 +357,22 @@ h3.bold {
 .hide-button {
     display: none;
 }
+
+label.company {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+label.type {
+    margin-right: 0.3em;
+    font-size: 40px;
+}
+
+label.info {
+    font-size: 25px;
+}
+
+label.howToApply p.info {
+    font-weight: inherit;
+    font-size: 30px;
+}

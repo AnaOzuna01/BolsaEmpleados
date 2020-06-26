@@ -185,9 +185,12 @@ router.post("/user_jobs/:id/user_post", function(req, res) {
 
 //User Jobs
 router.get("/user_jobs/:id/user_info", function(req, res) {
-    Job.findById(req.params.id, function(err, job) {
-        res.render("app/user_jobs/user_info", { job: job });
-    })
+    Job.findById(req.params.id)
+        .populate("creator")
+        .exec(function(err, job) {
+            if (err) console.log(err);
+            res.render("app/user_jobs/user_info", { job: job });
+        })
 });
 
 router.route("user_jobs/:id");
