@@ -8,6 +8,7 @@ var form = require("express-form-data");
 var redis = require("redis");
 var redisClient = redis.createClient();
 var RedisStore = require("connect-redis")(session);
+var Job = require("./models/jobs");
 
 var methodOverride = require("method-override");
 
@@ -84,6 +85,43 @@ app.post("/sessions", function(req, res) {
         res.redirect("/app")
     });
 });
+
+// Jobs
+app.get("/user_jobs/user_home", function(req, res) {
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Job.find({
+                "$or": [{
+                    category: regex
+                }, {
+                    company: regex
+                }, {
+                    position: regex
+                }, {
+                    location: regex
+                }]
+            }, null, { sort: { created: -1 } })
+            .populate("creator")
+            .exec(function(err, users_jobs) {
+                if (err) console.log(err);
+                console.log(users_jobs);
+                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+            })
+    } else {
+        //const skp = skipRow();
+        Job.find({}, null, { sort: { created: -1 } }).limit(10)//.skip(skp)
+            .populate("creator")
+            .exec(function(err, users_jobs) {
+                if (err) console.log(err);
+                console.log(users_jobs);
+                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+            })
+    }
+});
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 app.use("/app", session_middlewares);
 app.use("/app", router_app);

@@ -22,7 +22,7 @@ router.get("/", function(req, res) {
 router.get("/jobs/new", function(req, res) {
     res.render("app/jobs/new");
 });
-
+/*
 router.get("/user_jobs/user_home", function(req, res) {
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -44,7 +44,8 @@ router.get("/user_jobs/user_home", function(req, res) {
                 res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     } else {
-        Job.find({}, null, { sort: { created: -1 } }).limit(10)
+        //const skp = skipRow();
+        Job.find({}, null, { sort: { created: -1 } }).limit(10)//.skip(skp)
             .populate("creator")
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
@@ -52,7 +53,7 @@ router.get("/user_jobs/user_home", function(req, res) {
                 res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     }
-});
+});*/
 
 router.all("/jobs/:id*", job_find_middleware);
 
@@ -195,8 +196,11 @@ router.get("/user_jobs/:id/user_info", function(req, res) {
 
 router.route("user_jobs/:id");
 
-function escapeRegex(text) {
+/*function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+};*/
 
+/*function skipRow(){
+
+};*/
 module.exports = router;
