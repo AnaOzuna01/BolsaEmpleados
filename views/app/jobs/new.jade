@@ -5,17 +5,17 @@ block contenido
         hr
         form(action="/app/jobs", method="POST" enctype="multipart/form-data")
             div(class="form-group")
-                label(for="category") Category
+                label(for="category" class="col-xs-1") Category
                 select(name="category" id="category", class="form-control")
                     option(value="Design") Design
                     option(value="Programming") Programming
 
             div(class="form-group")
-                label(for="type") Type
+                label(for="type" class="col-xs-1") Type
                 br
                 
                 input(type="radio", name="type", value="FullTime")
-                label(for="FullTime", class="radio-inline margin-right") Full Time
+                label(for="FullTime", class="radio-inline margin-right" ) Full Time
                 
                 input(type="radio", name="type", value="PartTime")
                 label(for="PartTime", class="radio-inline margin-right") Part Time
@@ -23,28 +23,28 @@ block contenido
                 input(type="radio", name="type", value="Freelance")
                 label(for="Freelance", class="radio-inline margin-right") Freelance
             
-            div(class="form-group")
-                label(for="company") Company
+            div
+                label(for="company" class="col-xs-1") Company
                 input(type="text" name="company", placeholder="Company", id="company", class="form-control")
             
-            div(class="form-group")
-                label(for="logo") Logo
+            div
+                label(for="logo" class="col-xs-1") Logo
                 input(type="file" name="logo", placeholder="Choose logo", id="logo", class="form-control")
 
-            div(class="form-group")
-                label(for="url") URL
+            div
+                label(for="url" class="col-xs-1") URL
                 input(type="text" name="url", placeholder="URL", id="url", class="form-control")
 
-            div(class="form-group")
-                label(for="position") Position
+            div
+                label(for="position" class="col-xs-1") Position
                 input(type="text" name="position", placeholder="Position", id="position", class="form-control")
 
-            div(class="form-group")
-                label(for="location") Location
+            div
+                label(for="location" class="col-xs-1") Location
                 input(type="text" name="location", placeholder="Location", id="location", class="form-control")
 
-            div(class="form-group")
-                label(for="description") Description
+            div
+                label(for="description" class="col-xs-1") Description
                 textarea(name="description", rows="10", placeholder="Description", id="description", class="form-control")
                 //input(type="textarea" name="description", placeholder="Description", id="description", class="form-control")
 

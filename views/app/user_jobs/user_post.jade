@@ -1,24 +1,28 @@
 extends ../../layout_user.jade
 block contenido
     div(class="col-md-6 remove-float content-center big-top-space big-bottom-space")
-    h1 Welcome to User Post
+    h1(class="h1u") Post your info
     form(action="/app/user_jobs/#{job._id}/user_post" method="POST") 
     
         .row
-            div(class="col-xs-10")
-                label(for="email") Email
+        div(class="col-xs-10")
+                label(for="email" class="col-xs-10") E-mail
                 input(type="text" name="email", placeholder="Email", id="email", class="form-control")
-
-        label(for= "category")  Category
+                
+        br
+        label(for= "category" class="col-xs-10")  Category
         input(type="text", name="category", placeholder="Category", id="category", class="form-control", value="#{job.category}")
+        br
             
-        label(for= "location")  Location
+        label(for= "location" class="col-xs-10")  Location
         input(type="text", name="location", placeholder="location", id="location", class="form-control", value="#{job.location}")
+        br
             
-        label(for= "position")  Position
+        label(for= "position" class="col-xs-10")  Position
         input(type="text", name="position", placeholder="Position", id="position", class="form-control", value="#{job.position}")
+        br
             
-        label(for= "company")  Company
+        label(for= "company" class="col-xs-10")  Company
         input(type="text", name="company", placeholder="Company", id="company", class="form-control", value="#{job.company}")
              
         

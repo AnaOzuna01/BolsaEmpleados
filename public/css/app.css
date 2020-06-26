@@ -308,6 +308,7 @@ a.Edit:hover {
 
 .white.border.tr.large-padding {
     background-color: teal;
+    border: 0px;
 }
 
 .row {
@@ -315,7 +316,9 @@ a.Edit:hover {
 }
 
 .col-md-10 {
-    font-family: 'Trocchi', serif;
+
+    font-family: 'Trocchi', serif; 
+    
 }
 
 a.Post-color:hover {
@@ -342,14 +345,58 @@ a.Info-color {
 }
 
 .PostJob {
-    font-family: 'Stencil Std', fantasy;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:44px;
+    margin-top: 5px; margin-bottom: 0px;
+    text-align: center;
+    font-weight: normal;
+    color: orange;
 }
 
+.Imagen{
+    display: block;
+    margin: auto;
+    width: 200px;
+}
+
+.h3P{
+    text-decoration:underline;
+    font-style: italic;
+    color: orange; 
+    font-family: 'Trocchi', serif; 
+    font-size: 45px; 
+    font-weight: normal; 
+    line-height: 48px; 
+    margin: 0;
+}
+.text{
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #444;
+}
+
+.main-img{
+    display: block;
+    margin: auto;
+    width: 200px;
+}
 
 /* new.jade*/
 
-.form-group {
-    font-family: 'Georgia', serif;
+.col-xs-1{
+    color: #17706e; 
+    font-family: 'Trocchi', serif; 
+    font-size: 35px; 
+    font-weight: normal; 
+    line-height: 48px; 
+    margin: 0; 
+}
+.btn.btn-info{
+    background-color: orange;
+    color:white;
+    border: white;
 }
 
 h3.bold {
@@ -360,6 +407,7 @@ h3.bold {
     display: inline-table;
     align-items: center;
     justify-content: center;
+
 }
 
 .hide-button {
@@ -394,4 +442,43 @@ nav li {
     display: inline-block;
     margin: 0px;
     padding: 0px;
+}
+
+/*user_post.jade*/
+
+.h1u{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:44px;
+    margin-top: 5px; margin-bottom: 0px;
+    text-align: center;
+    font-weight: normal;
+    color: orange;
+    
+    
+}
+.col-xs-10{
+    color: #17706e; 
+    font-family: 'Trocchi', serif; 
+    font-size: 45px; 
+    font-weight: normal; 
+    line-height: 48px; 
+    margin: 0; 
+}
+
+/*Login & signup.jade*/
+.Login{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size:44px;
+    margin-top: 5px; margin-bottom: 0px;
+    text-align: left;
+    font-weight: normal;
+    color: orange
+}
+
+/*user_info.jade*/
+.btn.btn-warning{
+    background-color: greenyellow;
+    color:#17706e;
+    border: white;
+
 }

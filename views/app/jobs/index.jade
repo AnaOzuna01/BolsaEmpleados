@@ -5,26 +5,33 @@ block contenido
             .white.border.tr.large-padding
                 div(class="container")
                     .row(class="pt-5")
-                        .col-md-10
-                            h3= job.category
+                        .col-md-10  
+                            h3(class="h3P")= job.category
+                            br
+        
+                            h3(class="col-xs-1")  Type:
+                            h4(class="text")= job.type
+                            
                         
-                            h3.bold Type:
-                            h4= job.type
-                        
-                            h3.bold Company:
-                            h4= job.company
+                            h3(class="col-xs-1") Company:
+                            h4(class="text")= job.company
+                            
 
-                            img(src="/public/jobs_images/#{job._id}.#{job.extension}")
-                        
-                            h3.bold Position:
-                            h4= job.position
+                            img(src="/public/jobs_images/#{job._id}.#{job.extension}" class="Imagen")
+                            
 
-                            h3.bold Location:
-                            h4= job.location
+                            h3(class="col-xs-1")  Position:
+                            h4(class="text")= job.position
+                            
 
-                            h3.bold Description:
-                            p(style="box-sizing:none" class="your-div")= job.description
+                            h3(class="col-xs-1")  Location:
+                            h4(class="text")= job.location
+                            
+
+                            h3(class="col-xs-1")  Description:
+                            p(style="box-sizing:none" class="text")= job.description
                         .col-md-2
                             a(href="/app/jobs/#{job._id}/edit", class="Edit") Edit
                             form(action="/app/jobs/#{job._id}?_method=DELETE", class="link", method="POST")
                                 input(type="submit", value="Delete")
+                        

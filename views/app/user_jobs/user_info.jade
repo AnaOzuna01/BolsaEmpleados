@@ -5,23 +5,28 @@ block contenido
     form(action="/app/user_jobs/#{job._id}/user_post" method="POST") 
         div(class="form-group")
         
-            label.company=job.company
+            label.company(class="col-xs-1")=job.company
             br
-            label=job.location 
+            br
+            div(class="text")
+                label=job.location 
 
             hr
-            label.type=job.position
+            label.type(class="col-xs-1")=job.position
             label.type - 
-            label.type=job.type
+            label.type(class="text")=job.type
             hr 
             
-            label.info=job.description
+            label.info(class="text")=job.description
+            br
             br
             img(src="/public/jobs_images/#{job._id}.#{job.extension}")
             br
-            label.howToApply How to apply?
+            br
+            label.howToApply(class="col-xs-1") How to apply?
+        
             if (typeof job.creator != "undefined")
-                p.info Contact us at #{job.creator.email}
+                p.info(class="text") Contact us at #{job.creator.email}
                         
             div(class="row top-space hide-button")
                 div(class="col-xs-12 col-sm-6")

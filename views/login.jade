@@ -1,14 +1,14 @@
 extends ./layout_user.jade
 
 block contenido
-    h1 Login
+    h1(class="Login") Login
     div(class="col-md-6 remove-float content-center big-top-space")
         form(action="/sessions", method="POST")
-            div(class="form-group")
+            div(class="col-xs-1")
                 label(for="email") Email
                 input(type="text" name="email", placeholder="Email", id="email", class="form-control")
             
-            div(class="form-group")
+            div(class="col-xs-1")
                 label(for="password") Password
                 input(type="password" name="password", placeholder="Password", id="password", class="form-control")
 
