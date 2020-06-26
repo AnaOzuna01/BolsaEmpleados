@@ -41,14 +41,11 @@ block contenido
             div(class="form-group")
                 label(for="location") Location
                 input(type="text" name="location", placeholder="Location", id="location", class="form-control", value="#{job.location}")
-
-            label(for= "description")  Description
-            input(type="text", name="description", placeholder="Description", id="description", class="form-control", value="#{job.description}")
             
-            //div(class="form-group")
+            div(class="form-group")
                 label(for="description") Description
-                textarea(name="description", rows="10", placeholder="Description", id="description", class="form-control", value="#{job.description}")
-
+                textarea(name="description", rows="10", placeholder="#{job.description}", id="description", class="form-control")
+            
             div(class="row top-space")
                 div(class="col-xs-12 col-sm-6")
                     input(type="submit", value="Save", class="btn btn-info")

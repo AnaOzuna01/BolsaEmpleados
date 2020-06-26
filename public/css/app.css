@@ -361,3 +361,7 @@ h3.bold {
     align-items: center;
     justify-content: center;
 }
+
+.hide-button {
+    display: none;
+}
