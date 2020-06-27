@@ -23,7 +23,7 @@ router.get("/jobs/new", function(req, res) {
     res.render("app/jobs/new");
 });
 
-// Search Bar
+// Search Bar General
 router.get("/user_jobs/user_home", function(req, res) {
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -57,7 +57,7 @@ router.get("/user_jobs/user_home", function(req, res) {
 
 // Pages
 router.get("/user_jobs/user_home/:page", function(req, res) {
-        let perPage = 3;
+        let perPage = 1;
         let page = req.params.page || 1;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -71,7 +71,7 @@ router.get("/user_jobs/user_home/:page", function(req, res) {
                 }, {
                     location: regex
                 }]
-            }, null, { sort: { created: -1 } })//.skip((perPage * page) - perPage).limit(perPage)
+            }, null, { sort: { created: -1 } }).skip((perPage * page) - perPage).limit(perPage)
             .populate("creator")
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
