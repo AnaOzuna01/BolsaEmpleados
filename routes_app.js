@@ -57,7 +57,7 @@ router.get("/user_jobs/user_home", function(req, res) {
 
 // Pages
 router.get("/user_jobs/user_home/:page", function(req, res) {
-        let perPage = 1;
+        let perPage = 10;
         let page = req.params.page || 1;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
