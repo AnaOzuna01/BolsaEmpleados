@@ -71,19 +71,12 @@ router.get("/user_jobs/user_home/:page", function(req, res) {
                 }, {
                     location: regex
                 }]
-            }, null, { sort: { created: -1 } }).skip((perPage * page) - perPage).limit(perPage)
+            }, null, { sort: { created: -1 } })//.skip((perPage * page) - perPage).limit(perPage)
             .populate("creator")
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
                 console.log(users_jobs);
-                Job.count(function(err, count){
-                    if (err) console.log(err);
-                        console.log(users_jobs);
-                    res.render("app/user_jobs/user_home", { users_jobs: users_jobs,
-                        current: page,
-                        page: Math.ceil(count / perPage)
-                      });
-                })
+                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     } else {
         Job.find({}, null, { sort: { created: -1 } }).skip((perPage * page) - perPage).limit(perPage)

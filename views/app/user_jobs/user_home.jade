@@ -26,14 +26,48 @@ block contenido
                         a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
                 br
                 
-    nav(class="Page navigation example")
+    nav(class="mx-auto")
+    if pages
         ul(class="pagination")
-            li(class="page-item")
-                button(type="submit" class="page-link")
-                    i.fa.fa-arrow-circle-left
-            li(class="page-item")
-                button(type="submit" class="page-link")
-                    i.fa.fa-arrow-circle-right  
+            <!-- 1ra Pagina -->
+            if(current == 1)
+                li(class="page-item disabled")
+                    a(href="" class="page-link") First Page
+        
+            else
+                li(class="page-item")
+                    a(href="/app/user_jobs/user_home/1" class="page-link") First Page
+            <!-- Paginas -->
+            //script.
+            var c = parseInt(current)
+            var i = c > 5 ? c - 4 : 1 
+            if (i !== 1)
+                a(href="#" class="page-link")...
+                
+            for(; i <= (c + 4) && i <= pages; i++)
+                if(i == c)
+                    li(class="page.item")
+                        a(href="#{i}" class="page-link")
+                    
+                    else
+                        li(class="page-item")
+                            a(href="/app/user_jobs/user_home/#{i}" class="page-link") #{i}
+                    
+                    if( i == c + 4 && i < page) 
+                        li(class = "page-item")
+                            a(href="#" class="page-link")...
+                    
+                
+            <!-- Ultima Pagina -->
+            if(current == pages)
+                li(class="page-item disabled")
+                    a(href="" class="page-link")  Last Page
+        
+            else
+                li(class="page-item")
+                    a(href="/app/user_jobs/user_home/#{pages}" class="page-link") Last Page
+        
+    
     br
     br
     br      
