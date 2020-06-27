@@ -58,7 +58,7 @@ router.get("/user_jobs/user_home", function(req, res) {
 // Pages
 router.get("/user_jobs/user_home/:page", function(req, res) {
         let perPage = 3;
-        let page = 2;
+        let page = req.params.page || 1;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         Job.find({
@@ -81,7 +81,7 @@ router.get("/user_jobs/user_home/:page", function(req, res) {
                         console.log(users_jobs);
                     res.render("app/user_jobs/user_home", { users_jobs: users_jobs,
                         current: page,
-                        pages: Math.ceil(count / perPage)
+                        page: Math.ceil(count / perPage)
                       });
                 })
             })
