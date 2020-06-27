@@ -45,13 +45,61 @@ router.get("/user_jobs/user_home", function(req, res) {
                 res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     } else {
-        //const skp = skipRow();
-        Job.find({}, null, { sort: { created: -1 } }).limit(10)//.skip(skp)
+        Job.find({}, null, { sort: { created: -1 } })//.skip((PerPage * Page) - PerPage).limit(PerPage)
             .populate("creator")
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
                 console.log(users_jobs);
                 res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+            })
+    }
+});
+
+// Pages
+router.get("/user_jobs/user_home/:page", function(req, res) {
+        let perPage = 3;
+        let page = 2;
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Job.find({
+                "$or": [{
+                    category: regex
+                }, {
+                    company: regex
+                }, {
+                    position: regex
+                }, {
+                    location: regex
+                }]
+            }, null, { sort: { created: -1 } }).skip((perPage * page) - perPage).limit(perPage)
+            .populate("creator")
+            .exec(function(err, users_jobs) {
+                if (err) console.log(err);
+                console.log(users_jobs);
+                Job.count(function(err, count){
+                    if (err) console.log(err);
+                        console.log(users_jobs);
+                    res.render("app/user_jobs/user_home", { users_jobs: users_jobs,
+                        current: page,
+                        pages: Math.ceil(count / perPage)
+                      });
+                })
+            })
+    } else {
+        Job.find({}, null, { sort: { created: -1 } }).skip((perPage * page) - perPage).limit(perPage)
+            .populate("creator")
+            .exec(function(err, users_jobs) {
+                if (err) console.log(err);
+                console.log(users_jobs);
+                Job.count(function(err, count){
+                    if (err) console.log(err);
+                        console.log(users_jobs);
+                    res.render("app/user_jobs/user_home", { users_jobs: users_jobs,
+                        current: page,
+                        pages: Math.ceil(count / perPage)
+                      });
+                })
+                //res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     }
 });
