@@ -29,7 +29,7 @@ block contenido
     nav(class="mx-auto")
     if pages
         ul(class="pagination")
-            <!-- 1ra Pagina -->
+            //<!-- 1ra Pagina -->
             if(current == 1)
                 li(class="page-item disabled")
                     a(href="" class="page-link") First Page
@@ -37,14 +37,14 @@ block contenido
             else
                 li(class="page-item")
                     a(href="/app/user_jobs/user_home/1" class="page-link") First Page
-            <!-- Paginas -->
+            //<!-- Paginas -->
             //script.
-            var c = parseInt(current)
-            var i = c > 5 ? c - 4 : 1 
-            if (i !== 1)
+            //var c = parseInt(current)
+            //var i = c > 5 ? c - 4 : 1 
+            //if (i !== 1)
                 a(href="#" class="page-link")...
                 
-            for(; i <= (c + 4) && i <= pages; i++)
+            //for(; i <= (c + 4) && i <= pages; i++)
                 if(i == c)
                     li(class="page.item")
                         a(href="#{i}" class="page-link")
@@ -58,7 +58,7 @@ block contenido
                             a(href="#" class="page-link")...
                     
                 
-            <!-- Ultima Pagina -->
+            //<!-- Ultima Pagina -->
             if(current == pages)
                 li(class="page-item disabled")
                     a(href="" class="page-link")  Last Page
