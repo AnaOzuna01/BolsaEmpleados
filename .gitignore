@@ -1,3 +1,4 @@
 node_modules/
 Redis-x64-3.0.504/
 .env
+ADMIN.txt

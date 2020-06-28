@@ -7,6 +7,8 @@ var job_find_middleware = require("./middlewares/find_job");
 var nodemailer = require("nodemailer");
 var env = require("dotenv").config();
 var swal = require("sweetalert");
+var moment = require("moment");
+var today = moment();
 
 router.get("/", function(req, res) {
     Job.find({}, null, { sort: { created: -1 } })
@@ -44,8 +46,10 @@ router.get("/user_jobs/user_home", function(req, res) {
                 console.log(users_jobs);
                 res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
+
+
     } else {
-        Job.find({}, null, { sort: { created: -1 } })//.skip((PerPage * Page) - PerPage).limit(PerPage)
+        Job.find({}, null, { sort: { created: -1 } }) //.skip((PerPage * Page) - PerPage).limit(PerPage)
             .populate("creator")
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
@@ -57,8 +61,8 @@ router.get("/user_jobs/user_home", function(req, res) {
 
 // Pages
 router.get("/user_jobs/user_home/:page", function(req, res) {
-        let perPage = 10;
-        let page = req.params.page || 1;
+    let perPage = 10;
+    let page = req.params.page || 1;
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         Job.find({
@@ -84,15 +88,16 @@ router.get("/user_jobs/user_home/:page", function(req, res) {
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
                 console.log(users_jobs);
-                Job.count(function(err, count){
-                    if (err) console.log(err);
+                Job.count(function(err, count) {
+                        if (err) console.log(err);
                         console.log(users_jobs);
-                    res.render("app/user_jobs/user_home", { users_jobs: users_jobs,
-                        current: page,
-                        pages: Math.ceil(count / perPage)
-                      });
-                })
-                //res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+                        res.render("app/user_jobs/user_home", {
+                            users_jobs: users_jobs,
+                            current: page,
+                            pages: Math.ceil(count / perPage)
+                        });
+                    })
+                    //res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     }
 });

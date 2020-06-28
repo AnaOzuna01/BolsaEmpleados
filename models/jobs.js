@@ -16,6 +16,18 @@ var job_schema = new Schema({
     }
 });
 
+job_schema.virtual('creatDate')
+    .set(function(date) {
+        // El formato esperado es 'yyyy-mm-dd' que es el devuelto por el campo input
+        // el valor recibido se almacenará en el campo fecha_nacimiento_iso de nuestro documento
+        this.created = new Date(date);
+    })
+    .get(function() {
+        // el valor devuelto será un string en formato 'yyyy-mm-dd'
+        return this.created.toISOString().substring(0, 10);
+    });
+
+
 
 var Job = mongoose.model("Job", job_schema);
 module.exports = Job;

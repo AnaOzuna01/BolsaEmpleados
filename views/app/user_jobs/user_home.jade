@@ -51,6 +51,7 @@ block contenido
             th Location
             th Position
             th Company
+            th Date
             th Views
             
         for jobs in users_jobs
@@ -60,6 +61,7 @@ block contenido
                     td #{jobs.location}
                     td #{jobs.position}
                     td #{jobs.company}
+                    td #{jobs.creatDate}
                     td
                         a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
                         a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
@@ -80,6 +82,7 @@ block contenido
             th Location
             th Position
             th Company
+            th Date
             th Views
         for jobs in users_jobs
             if ( jobs.category == "Programming")
@@ -87,6 +90,7 @@ block contenido
                     td #{jobs.location}
                     td #{jobs.position}
                     td #{jobs.company}
+                    td #{jobs.creatDate}
                     td
                         a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
                         a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
