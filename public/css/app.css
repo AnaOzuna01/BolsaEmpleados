@@ -1,7 +1,7 @@
 .right-space {
     margin-right: 1em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     color: #b6eb7a;
 }
 
@@ -249,10 +249,10 @@ label {
 }
 
 .tabla {
-    font-family: "Arial", Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
     border-collapse: collapse;
     width: 70%;
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
     margin: 0 auto;
 }
@@ -482,3 +482,10 @@ nav li {
     border: white;
 
 }
+.Log{
+    margin-right: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    color: #b6eb7a;
+}
+
