@@ -1,10 +1,10 @@
 extends ../../layout_user.jade
 block contenido
-    div(class="container remove-float content-center big-top-space big-bottom-space")
+    div(class="d-flex justify-content-center container  remove-float content-center big-top-space big-bottom-space")
     
-    form(action="/app/user_jobs/#{job._id}/user_post" method="POST") 
-        div(class="form-group")
-        
+        form(action="/app/user_jobs/#{job._id}/user_post" method="POST") 
+            
+            
             label.company(class="col-xs-1")=job.company
             br
             br
@@ -33,7 +33,7 @@ block contenido
                     form(action="/app/user_jobs/#{job._id}/user_post" method="POST")
                         input(type="submit", value="Post", class="btn btn-info")
         
-            div(class="row top-space")
-                div(class="col-xs-12 col-sm-6")
-                    form(action="/app/user_jobs/user_home")
-                        input(type="submit", value="Back", class="btn btn-warning")
+    div(class="d-flex justify-content-center align-items-center") 
+        form(action="/app/user_jobs/user_home")
+            input(type="submit", value="Back", class="btn btn-warning btn-lg")
+        
