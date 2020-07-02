@@ -1,5 +1,6 @@
 var express = require("express");
 var Job = require("./models/jobs");
+var Category = require("./models/category");
 var router = express.Router();
 var fs = require("fs");
 var path = require('path');
@@ -106,8 +107,11 @@ router.all("/jobs/:id*", job_find_middleware);
 
 router.get("/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
-        res.render("app/jobs/edit", { job: job });
+        res.render("app/jobs/edit", { job: job});
     })
+   /* Category.findById(req.params.id, function(err, category) {
+        res.render("app/jobs/edit", { category: category});
+    })*/
 });
 
 router.route("/jobs/:id/")
@@ -240,6 +244,43 @@ router.get("/user_jobs/:id/user_info", function(req, res) {
             res.render("app/user_jobs/user_info", { job: job });
         })
 });
+
+// Admin Func
+router.get("/admin/panel", function(req, res) {
+    res.render("app/admin/panel");
+});
+
+router.route("/admin/:id")
+    .get(function(req, res) {
+        Category.findById(req.params.id, function(err, category) {
+            res.render("app/admin/show", { category: category });
+        })
+    });
+//Categoires
+router.route("/admin")
+    .get(function(req, res) {
+        Category.find({}, function(err, category) {
+            if (err) { res.redirect("/app"); return; }
+            res.render("app/admin/panel");
+        });
+    })
+    .post(function(req, res) {
+        var data = {
+            category: req.body.category
+        }
+
+        var category = new Category(data);
+        console.log(category);
+        category.save(function(err) {
+            if (!err) {
+                res.redirect("/app/admin/" + category._id);
+            } else {
+                console.log(err);
+            }
+        });
+    });
+
+
 
 router.route("user_jobs/:id");
 

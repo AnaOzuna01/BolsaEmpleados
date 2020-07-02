@@ -10,6 +10,11 @@ module.exports = function(req, res, next) {
                 res.redirect("/login");
             } else {
                 res.locals = { user: user }; //Para ver que user inicia session
+                console.log(user.role);
+                if(user.role == "Administrator"){
+                    res.render("app/admin/home_admin");
+                    //res.redirect("/admin");
+                }
                 next();
             }
         });
