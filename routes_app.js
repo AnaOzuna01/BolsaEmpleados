@@ -246,6 +246,14 @@ router.get("/user_jobs/:id/user_info", function(req, res) {
 });
 
 // Admin Func
+router.get("/admin", function(req, res) {
+    Job.find({}, null, { sort: { created: -1 } })
+        .populate("creator")
+        .exec(function(err, jobs) {
+            if (err) console.log(err);
+            res.render("app/admin/home_admin", { jobs: jobs });
+        })
+});
 router.get("/admin/panel", function(req, res) {
     res.render("app/admin/panel");
 });

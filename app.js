@@ -81,7 +81,13 @@ app.post("/users", function(req, res) {
 app.post("/sessions", function(req, res) {
     User.findOne({ email: req.body.email, password: req.body.password }, function(err, user) {
         req.session.user_id = user._id;
-        res.redirect("/app")
+        if(user.role == "Administrator"){
+            //res.render();
+            console.log("Entre como admin");
+            res.redirect("/app/admin");
+        }else{
+            console.log("entre como poster")
+            res.redirect("/app");}
     });
 });
 
