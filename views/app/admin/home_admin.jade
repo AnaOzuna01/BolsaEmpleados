@@ -1,5 +1,26 @@
 extend ../../layout_admin.jade 
 block contenido
 
-    h1 You are an admin modofoca
+    for job in jobs
+        div(class="img-container")
+            h1(class="h3P")= job.category
+
+                h3(class="col-xs-1")  Type:
+                h4(class="text")= job.type
+                
+                h3(class="col-xs-1") Company:
+                h4(class="text")= job.company
+
+                img(src="/public/jobs_images/#{job._id}.#{job.extension}", class="main-img")
+                
+                h3(class="col-xs-1")  Position:
+                h4(class="text")= job.position
+
+                h3(class="col-xs-1")  Location:
+                h4(class="text")= job.location
+
+                h3(class="col-xs-1")  Description:
+                h4(class="text")= job.description
+            if (typeof job.creator != "undefined")
+                p Post by #{job.creator.email}    
 
