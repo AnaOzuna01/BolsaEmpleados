@@ -258,12 +258,13 @@ router.get("/admin/panel", function(req, res) {
     res.render("app/admin/panel");
 });
 
-router.route("/admin/:id")
+/*router.route("/admin/:id")
     .get(function(req, res) {
         Category.findById(req.params.id, function(err, category) {
-            res.render("app/admin/show", { category: category });
+            res.render("app/admin/showC", { category: category });
         })
-    });
+    });*/
+
 //Categoires
 router.route("/admin")
     .get(function(req, res) {
@@ -287,6 +288,90 @@ router.route("/admin")
             }
         });
     });
+
+// All jobs admin
+router.route("/admin/jobs")
+    .get(function(req, res) {
+        Job.find( null, null, { sort: { created: -1 } }, function(err, jobs) {
+            if (err) { res.redirect("/app"); return; }
+            res.render("app/admin/index", { jobs: jobs });
+
+        });
+    })
+
+.post(function(req, res) {
+    console.log(req.files.logo);
+    var extension = req.files.logo.name.split(".").pop();
+    var data = {
+        category: req.body.category,
+        type: req.body.type,
+        company: req.body.company,
+        extension: extension,
+        position: req.body.position,
+        location: req.body.location,
+        description: req.body.description,
+        creator: res.locals.user._id
+    }
+
+    var job = new Job(data);
+    job.save(function(err) {
+        if (!err) {
+            fs.rename(req.files.logo.path, "public/jobs_images/" + job._id + "." + extension, function(err) {
+                res.redirect("/app/admin/" + job._id);
+            });
+
+        } else {
+            console.log(job);
+            res.render(err);
+        }
+
+    });
+});
+
+router.get("/admin/jobs/:id/edit", function(req, res) {
+    Job.findById(req.params.id, function(err, job) {
+        res.render("app/admin/edit", { job: job});
+    })
+   /* Category.findById(req.params.id, function(err, category) {
+        res.render("app/jobs/edit", { category: category});
+    })*/
+});
+
+router.route("/admin/jobs/:id/")
+    .get(function(req, res) {
+        res.render("app/admin/show");
+    })
+
+.put(function(req, res) {
+    res.locals.job.category = req.body.category;
+    res.locals.job.type = req.body.type;
+    res.locals.job.company = req.body.company;
+    res.locals.job.url = req.body.url;
+    res.locals.job.position = req.body.position;
+    res.locals.job.location = req.body.location;
+    res.locals.job.description = req.body.description;
+
+    res.locals.job.save(function(err) {
+        if (!err) {
+            res.render("app/admin/show");
+
+        } else {
+            res.render("app/admin/" + req.params.id + "/edit");
+        }
+    })
+})
+
+.delete(function(req, res) {
+    Job.findOneAndRemove({ _id: req.params.id }, function(err) {
+        if (!err) {
+            res.redirect("/app/admin");
+        } else {
+            console.log(err);
+            res.redirect("/app/admin" + req.params.id);
+        }
+    })
+});
+
 
 
 

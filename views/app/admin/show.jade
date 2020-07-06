@@ -1,6 +1,13 @@
-extends ../../layout.jade
+extends ../../layout_admin.jade
 block contenido
-    hr
-    h3 New category created
-    h4= category.category
-    hr
+    div(class="img-container")
+        
+        h1= job.category
+            h3= job.type
+            h3= job.company
+            img(src="/public/jobs_images/#{job._id}.#{job.extension}", class="main-img")
+            h3= job.position
+            h3= job.location
+            h3= job.description
+        if (typeof job.creator != "undefined")
+            p Post by #{job.creator.email}
