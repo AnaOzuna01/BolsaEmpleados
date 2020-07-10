@@ -258,18 +258,18 @@ router.get("/admin/panel", function(req, res) {
     res.render("app/admin/panel");
 });
 
-/*router.route("/admin/:id")
+router.route("/admin/panel/:id")
     .get(function(req, res) {
         Category.findById(req.params.id, function(err, category) {
             res.render("app/admin/showC", { category: category });
         })
-    });*/
+    });
 
 //Categoires
-router.route("/admin")
+router.route("/admin/panel")
     .get(function(req, res) {
         Category.find({}, function(err, category) {
-            if (err) { res.redirect("/app"); return; }
+            if (err) { res.redirect("/app/admin"); return; }
             res.render("app/admin/panel");
         });
     })
@@ -282,7 +282,7 @@ router.route("/admin")
         console.log(category);
         category.save(function(err) {
             if (!err) {
-                res.redirect("/app/admin/" + category._id);
+                res.redirect("/app/admin/panel/" + category._id);
             } else {
                 console.log(err);
             }
@@ -293,7 +293,7 @@ router.route("/admin")
 router.route("/admin/jobs")
     .get(function(req, res) {
         Job.find( null, null, { sort: { created: -1 } }, function(err, jobs) {
-            if (err) { res.redirect("/app"); return; }
+            if (err) { res.redirect("/app/admin"); return; }
             res.render("app/admin/index", { jobs: jobs });
 
         });
@@ -331,7 +331,7 @@ router.route("/admin/jobs")
 router.get("/admin/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
         res.render("app/admin/edit", { job: job});
-    })
+    })  
    /* Category.findById(req.params.id, function(err, category) {
         res.render("app/jobs/edit", { category: category});
     })*/
