@@ -7,8 +7,8 @@ block contenido
             div(class="form-group")
                 label(for="category" class="col-xs-1") Category
                 select(name="category" id="category", class="form-control")
-                    option(value="Design") Design
-                    option(value="Programming") Programming
+                  each cat in category 
+                        option(value = cat) #{cat}
 
             div(class="form-group")
                 label(for="type" class="col-xs-1") Type
