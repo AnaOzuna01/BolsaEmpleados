@@ -7,7 +7,7 @@ block contenido
                 label(for="category") Category
                 select(name="category" id="category", class="form-control", value="#{job.category}")
                     each cat in category 
-                        option(value = cat) #{cat}
+                        option(value = "#{cat}") #{cat}
                 
             div(class="form-group")
                 label(for="type") Type

@@ -2,12 +2,12 @@ extends ../../layout_admin.jade
 block contenido
     div(class="col-md-6 remove-float content-center big-top-space big-bottom-space")
         h1(class='PostJob') Post a Job
-        form(action="/app/jobs/#{job.id}?_method=PUT" method="POST")
+        form(action="/app/admin/jobs/#{job.id}?_method=PUT" method="POST")
             div(class="form-group")
                 label(for="category") Category
                 select(name="category" id="category", class="form-control", value="#{job.category}")
                     each cat in category 
-                        option(value = cat) #{cat}
+                        option(value = "#{cat}") #{cat}
                    
                 
             div(class="form-group")

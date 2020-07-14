@@ -137,7 +137,7 @@ router.route("/jobs/:id/")
             res.render("app/jobs/show");
 
         } else {
-            res.render("app/jobs/" + req.params.id + "/edit");
+            res.redirect("/app/jobs/" + req.params.id + "/edit");
         }
     })
 })
@@ -148,7 +148,7 @@ router.route("/jobs/:id/")
             res.redirect("/app/jobs");
         } else {
             console.log(err);
-            res.redirect("/app/jobs" + req.params.id);
+            res.redirect("/app/jobs/" + req.params.id);
         }
     })
 });
@@ -337,12 +337,12 @@ router.get("/admin/jobs/:id/edit", function(req, res) {
         Category.find().distinct('category', function(err, cat) {
             res.render("app/admin/edit", {category: cat, job: job});
         })
-        //res.render("app/admin/edit", { job: job});
+        //res.render("app/admin/edit", {job: job});
     })  
    /* Category.find(req.params.id, function(err, category) {
         res.render("app/jobs/edit", {category: category});
     })*/
-});
+}); 
 
 router.route("/admin/jobs/:id/")
     .get(function(req, res) {
@@ -363,7 +363,7 @@ router.route("/admin/jobs/:id/")
             res.render("app/admin/show");
 
         } else {
-            res.render("app/admin/" + req.params.id + "/edit");
+            res.redict("/app/admin/" + req.params.id + "/edit");
         }
     })
 })
