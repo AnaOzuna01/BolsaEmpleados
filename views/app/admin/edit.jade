@@ -5,9 +5,9 @@ block contenido
         form(action="/app/admin/jobs/#{job.id}?_method=PUT" method="POST")
             div(class="form-group")
                 label(for="category") Category
-                select(name="category" id="category", class="form-control", value="#{job.category}")
-                    each cat in category 
-                        option(value = "#{cat}") #{cat}
+                select(name="category" id="category", class="form-control", value= "#{job.category}")
+                    option(value="Programming") Programming
+                    option(value="Design") Design
                    
                 
             div(class="form-group")

@@ -5,6 +5,7 @@ var router = express.Router();
 var fs = require("fs");
 var path = require('path');
 var job_find_middleware = require("./middlewares/find_job");
+var job_find_middleware_admin = require("./middlewares/find_job_admin");
 var nodemailer = require("nodemailer");
 var env = require("dotenv").config();
 var swal = require("sweetalert");
@@ -23,9 +24,7 @@ router.get("/", function(req, res) {
 /*REST*/
 
 router.get("/jobs/new", function(req, res) {
-    Category.find().distinct('category', function(err, cat) {
-        res.render("app/jobs/new", {category: cat,});
-    })
+    res.render("app/jobs/new");
 });
 
 // Search Bar General
@@ -109,9 +108,7 @@ router.all("/jobs/:id*", job_find_middleware);
 
 router.get("/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
-        Category.find().distinct('category', function(err, cat) {
-            res.render("app/jobs/edit", {category: cat, job: job});
-        })
+        res.render("app/jobs/edit", { job: job});
     })
    /* Category.findById(req.params.id, function(err, category) {
         res.render("app/jobs/edit", { category: category});
@@ -137,6 +134,7 @@ router.route("/jobs/:id/")
             res.render("app/jobs/show");
 
         } else {
+            console.log(err);
             res.redirect("/app/jobs/" + req.params.id + "/edit");
         }
     })
@@ -292,57 +290,19 @@ router.route("/admin/panel")
             }
         });
     });
+// edit
 
-// All jobs admin
-router.route("/admin/jobs")
-    .get(function(req, res) {
-        Job.find( null, null, { sort: { created: -1 } }, function(err, jobs) {
-            if (err) { res.redirect("app/admin"); return; }
-            res.render("app/admin/index", { jobs: jobs });
-
-        });
-    })
-
-.post(function(req, res) {
-    console.log(req.files.logo);
-    var extension = req.files.logo.name.split(".").pop();
-    var data = {
-        category: req.body.category,
-        type: req.body.type,
-        company: req.body.company,
-        extension: extension,
-        position: req.body.position,
-        location: req.body.location,
-        description: req.body.description,
-        creator: res.locals.user._id
-    }
-
-    var job = new Job(data);
-    job.save(function(err) {
-        if (!err) {
-            fs.rename(req.files.logo.path, "public/jobs_images/" + job._id + "." + extension, function(err) {
-                res.redirect("/app/admin/" + job._id);
-            });
-
-        } else {
-            console.log(job);
-            res.render(err);
-        }
-
-    });
-});
+router.all("/admin/jobs/:id*", job_find_middleware_admin);
 
 router.get("/admin/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
-        Category.find().distinct('category', function(err, cat) {
-            res.render("app/admin/edit", {category: cat, job: job});
-        })
-        //res.render("app/admin/edit", {job: job});
+        res.render("app/admin/edit", { job: job});
     })  
    /* Category.find(req.params.id, function(err, category) {
         res.render("app/jobs/edit", {category: category});
     })*/
-}); 
+});     
+
 
 router.route("/admin/jobs/:id/")
     .get(function(req, res) {
@@ -378,6 +338,47 @@ router.route("/admin/jobs/:id/")
         }
     })
 });
+
+// All jobs admin
+router.route("/admin/jobs")
+    .get(function(req, res) {
+        Job.find( null, null, { sort: { created: -1 } }, function(err, jobs) {
+            if (err) { res.redirect("/app/admin"); return; }
+            res.render("app/admin/index", { jobs: jobs });
+
+        });
+    })
+
+.post(function(req, res) {
+    console.log(req.files.logo);
+    var extension = req.files.logo.name.split(".").pop();
+    var data = {
+        category: req.body.category,
+        type: req.body.type,
+        company: req.body.company,
+        extension: extension,
+        position: req.body.position,
+        location: req.body.location,
+        description: req.body.description,
+        creator: res.locals.user._id
+    }
+
+    var job = new Job(data);
+    job.save(function(err) {
+        if (!err) {
+            fs.rename(req.files.logo.path, "public/jobs_images/" + job._id + "." + extension, function(err) {
+                res.redirect("/app/admin/" + job._id);
+            });
+
+        } else {
+            console.log(job);
+            res.render(err);
+        }
+
+    });
+});
+
+
 
 
 
