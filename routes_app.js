@@ -24,7 +24,9 @@ router.get("/", function(req, res) {
 /*REST*/
 
 router.get("/jobs/new", function(req, res) {
-    res.render("app/jobs/new");
+    Category.find().distinct('category', function(err, cat) {
+        res.render("app/jobs/new", {category: cat,});
+    })
 });
 
 // Search Bar General
@@ -108,7 +110,9 @@ router.all("/jobs/:id*", job_find_middleware);
 
 router.get("/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
-        res.render("app/jobs/edit", { job: job});
+        Category.find().distinct('category', function(err, cat) {
+            res.render("app/jobs/edit", {category: cat, job: job});
+        })
     })
    /* Category.findById(req.params.id, function(err, category) {
         res.render("app/jobs/edit", { category: category});
@@ -296,7 +300,9 @@ router.all("/admin/jobs/:id*", job_find_middleware_admin);
 
 router.get("/admin/jobs/:id/edit", function(req, res) {
     Job.findById(req.params.id, function(err, job) {
-        res.render("app/admin/edit", { job: job});
+        Category.find().distinct('category', function(err, cat) {
+            res.render("app/admin/edit", {category: cat, job: job});
+        })
     })  
    /* Category.find(req.params.id, function(err, category) {
         res.render("app/jobs/edit", {category: category});
