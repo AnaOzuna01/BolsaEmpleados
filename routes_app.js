@@ -25,7 +25,7 @@ router.get("/", function(req, res) {
 
 router.get("/jobs/new", function(req, res) {
     Category.find().distinct('category', function(err, cat) {
-        res.render("app/jobs/new", {category: cat,});
+        res.render("app/jobs/new", {category: cat});
     })
 });
 
@@ -47,8 +47,10 @@ router.get("/user_jobs/user_home", function(req, res) {
             .populate("creator")
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
-                console.log(users_jobs);
-                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+                console.log(users_jobs);  
+                Category.find().distinct('category', function(err, cat){
+                    res.render("app/user_jobs/user_home", {category: cat ,users_jobs: users_jobs});
+                })             
             })
 
 
@@ -58,7 +60,10 @@ router.get("/user_jobs/user_home", function(req, res) {
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
                 console.log(users_jobs);
-                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+                Category.find().distinct('category',function(err, cat){
+                    res.render("app/user_jobs/user_home", {category: cat ,users_jobs: users_jobs});
+                })
+                
             })
     }
 });
@@ -84,7 +89,9 @@ router.get("/user_jobs/user_home/:page", function(req, res) {
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
                 console.log(users_jobs);
-                res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
+                Category.find().distinct('category',function(err, cat){
+                    res.render("app/user_jobs/user_home", {category: cat ,users_jobs: users_jobs});
+                })
             })
     } else {
         Job.find({}, null, { sort: { created: -1 } }).skip((perPage * page) - perPage).limit(perPage)
@@ -92,15 +99,19 @@ router.get("/user_jobs/user_home/:page", function(req, res) {
             .exec(function(err, users_jobs) {
                 if (err) console.log(err);
                 console.log(users_jobs);
-                Job.count(function(err, count) {
+                Category.find().distinct('category',function(err, cat){
+                    Job.count(function(err, count) {
                         if (err) console.log(err);
                         console.log(users_jobs);
                         res.render("app/user_jobs/user_home", {
+                            category : cat,
                             users_jobs: users_jobs,
                             current: page,
                             pages: Math.ceil(count / perPage)
                         });
                     })
+                })
+               
                     //res.render("app/user_jobs/user_home", { users_jobs: users_jobs });
             })
     }

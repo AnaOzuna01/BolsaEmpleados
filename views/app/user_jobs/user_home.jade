@@ -2,10 +2,6 @@ extends ../../layout_user.jade
 
 block contenido
     
-    
-    h1.design  Design
-    hr
-    br
     nav(class="Page navigation example")
         ul(class="pagination")
             //1ra Pagina
@@ -45,56 +41,31 @@ block contenido
             else
                 li(class="page-item")
                     a(href="/app/user_jobs/user_home/#{pages}" class="page-link") Last Page
-
-    table.tabla
-        tr 
-            th Location
-            th Position
-            th Company
-            th Date
-            th Views
-            
-        for jobs in users_jobs
-            if ( jobs.category == "Design")
-            
-                tr 
-                    td #{jobs.location}
-                    td #{jobs.position}
-                    td #{jobs.company}
-                    td #{jobs.creatDate}
-                    td
-                        a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
-                        a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                br
-                
-        
-    
-    br
     br
     br      
     br
-    h1.prog Programming 
     hr
     br
-    
-    table.tabla
-        tr 
-            th Location
-            th Position
-            th Company
-            th Date
-            th Views
-        for jobs in users_jobs
-            if ( jobs.category == "Programming")
-                tr 
-                    td #{jobs.location}
-                    td #{jobs.position}
-                    td #{jobs.company}
-                    td #{jobs.creatDate}
-                    td
-                        a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
-                        a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                br
-        br
-        br
+    for cat in category
+        table.tabla
+            h1.prog #{cat}
+            tr 
+                th Location
+                th Position
+                th Company
+                th Date
+                th Views
+            for jobs in users_jobs
+                if ( jobs.category == cat)
+                    tr 
+                        td #{jobs.location}
+                        td #{jobs.position}
+                        td #{jobs.company}
+                        td #{jobs.creatDate}
+                        td
+                            a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
+                            a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
+                    br
+            br
+            br
     
