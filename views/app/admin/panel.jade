@@ -1,15 +1,17 @@
 extends ../../layout_admin.jade
 block contenido
 
-    h1 You' re an admin
+
     hr
-    div(class="col-md-6 remove-float content-center big-top-space big-bottom-space")
+    div(class="col-md-6 remove-float content-center big-top-space big-bottom-space" )
         h1(class="PostJob") Create a category
-        hr
+        br
         form(action="/app/admin/panel", method="POST")
             
             div
                 label(for="category" class="col-xs-1") Category
+                br
+                br
                 input(type="text" name="category", placeholder="Create a new category", id="category", class="form-control")
             
             div(class="row top-space")

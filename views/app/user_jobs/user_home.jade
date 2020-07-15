@@ -54,7 +54,7 @@ block contenido
                 th Position
                 th Company
                 th Date
-                th Views
+                th Views            
             for jobs in users_jobs
                 if ( jobs.category == cat)
                     tr 
@@ -65,7 +65,6 @@ block contenido
                         td
                             a(href="/app/user_jobs/#{jobs._id}/user_post", class="right-space color") Post
                             a(href="/app/user_jobs/#{jobs._id}/user_info", class="right-space color") Info
-                    br
-            br
-            br
-    
+        br
+        br        
+            
